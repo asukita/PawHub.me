@@ -1,0 +1,468 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale = 1.0, user-scalable = no">
+	<title>PawHub</title>
+	<link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
+	<link href="css/prettyPhoto.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="css/jcarousel.css" />
+	<link rel="stylesheet" href="css/normalize.css" type="text/css" media="screen">
+	<link rel="stylesheet" href="css/grid.css" type="text/css" media="screen">
+	<link rel="shortcut icon" href="images/favicon.ico">
+	
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,800,700,300' rel='stylesheet' type='text/css'>
+
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />
+
+	
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
+	<script type="text/javascript" src="js/jquery.prettyPhoto.js"></script>
+	<script src="js/jquery.sticky.js"></script>
+	<script type="text/javascript" src="js/jquery.jcarousel.js"></script>
+	<script type="text/javascript" src="js/js.js"></script>
+	<script type="text/javascript" src="js/jquery.stellar.min.js"></script>
+	<script type="text/javascript" src="js/waypoints.min.js"></script>
+	
+	<!--[if lt IE 9]>
+		<script src="js/html5shiv.js"></script>
+		<script src="js/respond.src.js"></script>
+	<![endif]-->
+	
+	<script type="text/javascript">
+		$(document).ready(function(){	
+			$("#ajax-contact-form").submit(function() {
+				var str = $(this).serialize();		
+				$.ajax({
+					type: "POST",
+					url: "contact_form/contact_process.php",
+					data: str,
+					success: function(msg) {
+						// Message Sent - Show the 'Thank You' message and hide the form
+						if(msg == 'OK') {
+							result = '<div class="notification_ok">Your message has been sent. Thank you!</div>';
+							$("#fields").hide();
+						} else {
+							result = msg;
+						}
+						$('#note').html(result);
+					}
+				});
+				return false;
+			});
+
+	
+	</script>
+	
+	<script>
+		//detecta cambio de orientacion y refresca cada vez
+		window.addEventListener("orientationchange", function() {
+	        location.reload(); 
+		}, false);
+	</script>
+	
+</head>
+
+<body>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="slide" id="slide1" data-slide="1" data-stellar-background-ratio="0.5">
+	<div class="slideImg A" data-stellar-background-ratio="0.5"></div>
+   	<div class="slideImg B" data-stellar-background-ratio="0.5"></div>
+    
+	<div class="effect_2">
+		<div class="container clearfix">
+
+			<div id="content" class="grid_12">
+            <img id="homeLogo" src="images/Login_logo.png"></img>
+				<div class="filtr_bg">
+					<h1>Tu <span class="yf">mejor</span> amigo</h1>
+					<div class="slogan">
+						<div class="slogan_text">sin <span class="bf">importar</span> lo que pase</div>
+					</div>
+				</div>                
+				<a class="button" title="" data-slide="2"></a>
+				<div class="clear"></div>
+			</div>
+		</div>
+		<div class="inset_shadow"></div>
+	</div>
+</div>
+
+
+<div class="menu">	
+	<div class="container clearfix">
+
+		<div id="logo">
+			<a href="index.html"><img src="images/logo.png" /></a>
+		</div>
+		
+		<div id="nav">
+			<a class="btn_dropdown" data-toggle="collapse" data-target=".nav-collapse_">MENU</a>
+			<ul class="navigation">
+				<li data-slide="1">Home</li>
+				<li data-slide="2">What is</li>
+				<li data-slide="4">Tools</li>
+				<li data-slide="6">Motto</li>
+				<li data-slide="7">Team</li>
+				<div class="clear"></div>
+			</ul>
+		</div>
+	
+	</div>
+</div>
+
+
+<div class="slide" id="slide2" data-slide="2" data-stellar-background-ratio="0.5">
+	<div class="container clearfix">
+		
+		<div id="content" class="grid_12">
+			<div class="title">
+				<div class="left_bord2"></div>
+				<h1>¿Qué es PawHub?</h1>
+				<div class="right_bord2"></div>
+			</div>
+		</div>
+		<div class="clear"></div>
+		
+		<div id="content">
+			<div class="grid_12">
+				<div id="jcarousel">
+					<ul id="mycarousel" class="jcarousel-skin-tango">
+						<!--<li>
+							<img src="images/about_img1.png" />
+							<iframe id="jcarousel_video" width="100%" height="100%" src="http://www.youtube.com/embed/-aIyAZmZs_Y" frameborder="0" allowfullscreen></iframe>
+						</li>-->
+						<li>
+							<img src="images/quees1.png" />
+						</li>
+						<li>
+							<img src="images/about_img2.png" />
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="clear"></div>
+			
+			<div class="grid_12">
+				<p>Plataforma social y activa que combina la viralidad de una red social y herramientas que permiten la colaboración entre empresas, ONG's, entusiastas y amantes de las mascotas con el fin de facilitar e incentivar acciones reales en pro del movimiento de cuidado, protección y control de los animales de compañía.</p>
+                <p>El movimento en pro de la protección, esterilización y adopción de los animales de compañía está tomando cada vez más fuerza en países en desarrollo como México. Sin embargo, falta medios de difusión y herramientas que realmente impacten a la sociedad y ayuden de forma "activa" en esta causa.</p>      
+			</div>
+			<div class="clear"></div>
+		</div>
+		
+	</div>
+</div>
+
+
+
+
+<div class="slide" id="slide3" data-slide="3" data-stellar-background-ratio="0.5">
+	<div class="effect_2 padding_slide3">
+		<div class="container clearfix">
+		
+			<div class="slide_descr">
+				<img src="images/slide_icon.png" />
+				<a target="_new" href="http://startupbuzz.la/gsl-de-mit-emprendimiento-west-coast-en-mexico/"><h3 class="cf">red social que busca integrar entretenimiento e impacto social</h3></a>
+				<div class="author">
+					<div class="author_bord"></div>
+					<a target="_new" href="https://twitter.com/ignatovar"><span>Ignacio Tovar - starupbuzz.la</span></a>
+					<div class="author_bord"></div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</div>
+
+<div class="slide" id="slide4" data-slide="4" data-stellar-background-ratio="0.5">
+	<div class="container clearfix">
+		
+		
+		<div class="grid_12">
+				<div id="jcarousel">
+					<ul id="tools" class="jcarousel-skin-tango">
+						<li>
+	                        <div class="container tool">
+								<img src="images/adoption.png"></img>
+                                <div class="info">
+                                <h3>Adoption Engine</h3>
+                                <p>Encuentra a tu mejor amigo de acuerdo a tus necesidades y características que estás buscando. Ya sea por tipo, raza, temperamento, etc.</p>
+                                </div>
+                            </div>
+						</li>
+						<li>
+							<div class="container tool">
+								<img src="images/lostAndFound.png"></img>
+                                <div class="info">
+                                <h3>Lost and Found</h3>
+                                <p>Manten la calma y usa esta herramienta para notificar a toda la red y así aprovechar la viralidad dentro de esta y en otras redes sociales.</p>
+                                </div>
+                            </div>
+						</li>
+						<li>
+                        	<div class="container tool">
+								<img src="images/social.png"></img>
+                                <div class="info">
+                                <h3>Social Network</h3>
+                                <p>Find your pet in an easy way. Keep the calm and
+use this tool to publish the pics and notice in all
+the network</p>
+                                </div>
+                            </div>
+						</li>
+						<li>
+                        	<div class="container tool">
+								<img src="images/news.png"></img>
+                                <div class="info">
+                                <h3>News and Events</h3>
+                                <p>Find your pet in an easy way. Keep the calm and
+use this tool to publish the pics and notice in all
+the network</p>
+                                </div>
+                            </div>
+						</li>
+					</ul>
+				</div>
+                <div class="toolBar">
+                	<a href="1"><img src="images/adoption_ico.png"></img></a>
+                	<a href="2"><img src="images/lostAndFound_ico.png"></img></a>
+                	<a href="3"><img src="images/social_ico.png"></img></a>
+                	<a href="4"><img src="images/news_ico.png"></img></a>
+                </div>
+			</div>
+			<div class="clear"></div>
+		
+	
+	</div>
+</div>
+
+
+
+<div class="slide" id="slide5" data-slide="5" data-stellar-background-ratio="0.5">
+	<div class="effect_2 padding_slide5">
+		<div class="container clearfix">
+		
+			<div class="slide_descr">
+				<img src="images/slide_icon.png" />
+				<h3>Todo parece imposible, hasta que se hace</h3>
+				<div class="author">
+					<div class="author_bord"></div>
+					<span>Nelson Mandela</span>
+					<div class="author_bord"></div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</div>
+
+
+
+<div class="slide" id="slide6" data-slide="6" data-stellar-background-ratio="0.5">
+            <div class="leyend">
+            	<span class="s1">En México, EU y Canadá<br/></span>
+                <p>
+            	<span class="s2">existen <span class="yf">85 millones</span> de</span><br/>
+                <span class="s3">perros y gatos en <span class="bf">situación de calle</span></span>
+                </p>
+            </div>            
+	<div class="slideImg A" data-stellar-background-ratio="0.5">
+            <div class="leyend">
+                <span class="s1">Tan sólo en EU<br/></span>
+                <p>
+                <span class="s2"><span class="yf">10 mil</span> perros y gatos</span><br/>
+                <span class="s3">son sacrificados <span class="bf">diariamente</span></span>
+                </p>
+            </div>
+    </div>
+   	<div class="slideImg B" data-stellar-background-ratio="0.5">
+	    <div class="leyend">
+                <span class="s1">El <span class="yf">25%</span> de los perros<br/></span>
+                <p>
+                <span class="s2">en perreras <span class="bf">son de raza</span></span><br/>
+                <span class="s3">debido al abandono o extravío</span>
+                </p>
+            </div>
+    </div>
+	<div class="container clearfix">    
+		<div id="content" class="grid_12">
+			<div class="title">
+				<h1>Our Motto</h1>
+			</div>
+		</div>
+		<div class="clear"></div>
+		
+   </div>
+</div>
+
+
+
+<div class="slide" id="slide7" data-slide="7" data-stellar-background-ratio="0.5">
+<div class="container clearfix">
+		
+		<div id="content" class="grid_12 tac">
+			<div class="title">
+				<h1>Team</h1>
+			</div>
+            <img src="images/blastic_logo.png"/>
+            		</div>
+		<div class="clear"></div>
+		
+		<div id="content">
+			<div class="team_block">
+				<div class="team">
+					<div class="team_foto pb">
+						<img src="images/amy.png" alt="" />
+						<div class="team_descr"><a class="team_soc1" href="javascript:void(0);"></a><a class="team_soc2" href="javascript:void(0);"></a></div>
+					</div>
+					<p>Amy González</p>
+					CDO
+					<div class="team_contact">
+						<div class="team_contact_icon"><img src="images/contact_icon.png" /></div>
+						<a href="javascript:void(0);">Contact</a>
+					</div>
+				</div>
+				<div class="team">
+					<div class="team_foto bb">
+						<img src="images/imarban.png" alt="" />
+						<div class="team_descr"><a class="team_soc1" href="javascript:void(0);"></a><a class="team_soc2" href="javascript:void(0);"></a></div>
+					</div>
+					<p>Israel G. Marbán</p>
+					CFO
+					<div class="team_contact">
+						<div class="team_contact_icon"><img src="images/contact_icon.png" /></div>
+						<a href="javascript:void(0);">Contact</a>
+					</div>
+				</div>
+				<div class="team">
+					<div class="team_foto yb">
+						<img src="images/pam.png" alt="" />
+						<div class="team_descr"><a class="team_soc1" href="javascript:void(0);"></a><a class="team_soc2" href="javascript:void(0);"></a></div>
+					</div>
+					<p>Pamela Vargas</p>
+					COO
+					<div class="team_contact">
+						<div class="team_contact_icon"><img src="images/contact_icon.png" /></div>
+						<a href="javascript:void(0);">Contact</a>
+					</div>
+				</div>
+				<div class="team omega">
+					<div class="team_foto rb">
+						<img src="images/julius.png" alt="" />
+						<div class="team_descr"><a class="team_soc1" href="javascript:void(0);"></a><a class="team_soc2" href="javascript:void(0);"></a></div>
+					</div>
+					<p>Julio Ávila</p>
+					CEO
+					<div class="team_contact">
+						<div class="team_contact_icon"><img src="images/contact_icon.png" /></div>
+						<a href="javascript:void(0);">Contact</a>
+					</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+	
+	</div>
+</div>
+
+
+<!--
+<div class="slide" id="slide10" data-slide="10" data-stellar-background-ratio="0.5">
+	<div class="container clearfix">
+		
+		<div id="content" class="grid_12">
+			<div class="title">
+				<div class="left_bord2"></div>
+				<h1>Contact</h1>
+				<div class="right_bord2"></div>
+			</div>
+		</div>
+		<div class="clear"></div>
+		
+		<div class="grid_12">
+			<p>Nullam aliquam, mauris sit amet convallis condimentum, massa tortor pretium magna, vitae rutrum libero nibh vitae nisl. Sed imperdiet dictum sapien. Mauris tortor massa, euismod eu rhoncus dignissim, ultrices at leo. Donec gravida, lorem ac sollicitudin venenatis, ante risus convallis massa, non porta eros diam sit amet elit. Ut blandit ornare ante hendrerit malesuada. Duis eget odio at erat condimentum tempus. Duis fermentum odio nec arcu elementum sit amet</p>
+			<div class="contact_form">  
+				<div id="note"></div>
+				<div id="fields">
+					<form id="ajax-contact-form" action="">
+						<div class="grid_6">
+							<input type="text" name="name" value="" placeholder="Name" />
+							<input type="text" name="subject" value="" placeholder="Phone" />
+							<input type="text" name="email" value="" placeholder="Email" />
+						</div>
+						<div class="grid_6 omega"><textarea name="message" id="message" placeholder="Message"></textarea></div>
+						<div class="clear"></div>
+						<input type="reset" class="contact_btn" value="Clear Form" />
+						<input type="submit" class="contact_btn send_btn" value="Send" />
+						<div class="clear"></div>
+					</form>
+				</div>
+			</div>
+		</div>		
+		<div class="clear"></div>
+
+	</div>
+	
+</div>
+-->
+
+
+
+<div id="footer">
+	<div class="container clearfix">
+		<div class="copyright">PawHub &copy; 2013 | Share this on </div>
+		<div id="back_top"><a class="button" title="" data-slide="1"></a></div>
+        
+        <!-- AddThis Button BEGIN -->
+        <div class="addthis_toolbox addthis_default_style ">
+        <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+        <a class="addthis_button_tweet"></a>
+        <a class="addthis_button_pinterest_pinit"></a>
+        <a class="addthis_counter addthis_pill_style"></a>
+        </div>
+        <script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-51edc16b77ba1220"></script>
+        <!-- AddThis Button END -->
+    
+		<div class="clear"></div>
+
+    	<div id="follow">
+<!-- AddThis Follow BEGIN -->
+<p>Follow Us</p>
+<div class="addthis_toolbox addthis_32x32_style addthis_default_style">
+<a class="addthis_button_facebook_follow" addthis:userid="pawhub"></a>
+<a class="addthis_button_twitter_follow" addthis:userid="PawHubOfficial"></a>
+</div>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-51edc16b77ba1220"></script>
+<!-- AddThis Follow END -->
+
+        </div>
+	</div>
+</div>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-10483060-4', 'pawhub.me');
+  ga('send', 'pageview');
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
