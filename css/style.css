@@ -229,13 +229,13 @@ img.icon_img {
 }
 
 #slide1, #slide6,.slideImg{
-	background-position: 50% 60%!important;
+	background-position-x:50%!important;
 	background-size: cover !important;
 	width:100%;
 	text-align:center;
 }
 #slide1{
-	background-image:url(../images/slide1_bg.jpg);	
+	background-image:url(../images/slide1_bg.jpg);
 	position: relative;
 	z-index: 9999;
 }
@@ -994,7 +994,8 @@ a.team_soc2 {
 	color:#fff;
 }
 #back_top a.button:hover {text-decoration:none;}
-.addthis_button_facebook_follow, .addthis_button_twitter_follow{background-position: 0 0!important};
+.addthis_button_facebook_follow, .addthis_button_twitter_follow{background-position: 0 0!important}
+.at-vertical-menu{top:30%!important}
 
 /* ____________ //BACK_TOP __________ */
 
