@@ -180,13 +180,10 @@ h3 {
 }
 .author span {
 	display:inline-block;
-	padding:0 8px;
-	text-transform:uppercase;
+	padding:0 4px;
+	font-size: 1em!important;
 	font-family: 'Open Sans', sans-serif;
-	font-weight:800;
-	font-size:15px;
-	line-height:36px;
-	color:#3e3e3e;
+	color:#ccc;
 }
 .author_bord {
 	display:inline-block;
@@ -230,7 +227,7 @@ img.icon_img {
 
 #slide1, #slide6,.slideImg{
 	background-position-x:50%!important;
-	background-size: cover !important;
+	background-size: cover!important;
 	width:100%;
 	text-align:center;
 }
@@ -997,14 +994,12 @@ a.team_soc2 {
 .addthis_button_facebook_follow, .addthis_button_twitter_follow{background-position: 0 0!important}
 .at-vertical-menu{top:30%!important}
 
-/* ____________ //BACK_TOP __________ */
-
 /* ___________________________________ //FOOTER ___________________________________ */
-
-
-
-
-
-
-
-
+.author:link{font-size: .8em}
+.author {position: absolute;left: 10px;bottom: 60px;opacity: .3;z-index: 2000;
+	transition: opacity .3s ease-in-out;
+	-moz-transition: opacity .3s ease-in-out;
+	-webkit-transition: opacity .3s ease-in-out;
+	-o-transition: opacity .3s ease-in-out;}
+.author:hover{opacity: 1}
+.author img{vertical-align: middle}
