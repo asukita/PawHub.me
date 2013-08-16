@@ -93,7 +93,7 @@ jQuery(document).ready(function ($) {
 			$('.slideImg.'+imgs[img]).css("opacity","100");
 			img++;
 		}
-	}, 6000);
+	}, 4000);
 	
 
 	/**/	
