@@ -217,31 +217,52 @@
 					f.candidateCity.focus();
 					return false;
 				}
-				if ((f.candidateMsg.value == "")||(f.candidateMsg.value == "...")||(f.candidateMsg.value.length == 0)) { //revisar espacios
+				if ((f.candidateMsg.value == "") || (f.candidateMsg.value == "...") || (f.candidateMsg.value.length == 0)) {//revisar espacios
 					alert("¡Queremos saber más de ti!");
 					f.candidateMsg.focus();
 					return false;
 				}
-				if ((f.candidateInterest.value == "")||(f.candidateInterest.value == "...")||(f.candidateInterest.value.length == 0)) { //revisar espacios
+				if ((f.candidateInterest.value == "") || (f.candidateInterest.value == "...") || (f.candidateInterest.value.length == 0)) {//revisar espacios
 					alert("¡Queremos saber tus intereses!");
 					f.candidateInterest.focus();
 					return false;
 				}
 
 			}
-			
+
 			showValues(inp);
 
 		}
 
 		function showValues(inp) {
 			var str;
-			if (inp == 1)
+			if (inp == 1) {
 				str = $("#formElem1").serialize();
-			else {
+
+				/**
+				 $.ajax({
+				 type : "POST",
+				 url : "",
+				 data : str,
+				 success : function(data) {
+
+				 }
+				 });**/
+
+			} else if (inp == 2) {
 				str = $("#formElem2").serialize();
+
+				/**
+				 $.ajax({
+				 type : "POST",
+				 url : "",
+				 data : str,
+				 success : function(data) {
+
+				 }
+				 });**/
 			}
-			alert(str);
+
 		}
 	</script>
 
