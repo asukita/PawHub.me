@@ -1,8 +1,4 @@
 $(function() {
-	/*
-	number of fieldsets
-	*/
-	var fieldsetCount = $('#formElem').children().length;
 	
 	/*
 	current position of fieldset / navigation link
@@ -26,12 +22,7 @@ $(function() {
 	to avoid problems in IE, focus the first input of the form
 	*/
 	$('#formElem').children(':first').find(':input:first').focus();	
-	
-	/*
-	show the navigation bar
-	*/
-	$('#navigation').show();
-	
+
 	/*
 	when clicking on a navigation link 
 	the form slides to the corresponding fieldset
@@ -61,30 +52,5 @@ $(function() {
         });
         e.preventDefault();
     });
-	
-	/*
-	clicking on the tab (on the last input of each fieldset), makes the form
-	slide to the next step
-	*/
-	$('#formElem > fieldset').each(function(){
-		var $fieldset = $(this);
-		$fieldset.children(':last').find(':input').keydown(function(e){
-			if (e.which == 9){
-				$('#navigation li:nth-child(' + (parseInt(current)+1) + ') a').click();
-				/* force the blur for validation */
-				$(this).blur();
-				e.preventDefault();
-			}
-		});
-	});
-	
-	/*
-	if there are errors don't allow the user to submit
-	*/
-	$('#registerButton').bind('click',function(){
-		if($('#formElem').data('errors')){
-			alert('Please correct the errors in the Form');
-			return false;
-		}	
-	});
+
 });
