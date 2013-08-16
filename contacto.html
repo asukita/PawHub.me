@@ -1,0 +1,112 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale = 1.0, user-scalable = no">
+		<title>Contacto</title>
+		<link rel="stylesheet" href="css/formstyle.css" type="text/css" media="screen"/>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		<script type="text/javascript" src="js/sliding.form.js"></script>
+
+		<div id="wrapper" align="center">
+			<div id="navigation">
+				<ul>
+					<li id="li1" class="selected">
+						<a href="#">Pre-Registro de Usuarios</a>
+					</li>
+					<li id="li2">
+						<a href="#">¿Te gustaría ser parte de PawHub?</a>
+					</li>
+					<li id="li3">
+						<a href="#">¿Te gustaría apoyar/invertir?</a>
+					</li>
+				</ul>
+			</div>
+			<div id="steps">
+				<form id="formElem1" name="formElem1" action="index.html" method="post">
+					<fieldset class="step">
+						<legend>
+							Crea tu cuenta
+						</legend>
+						<p>
+							<label for="name">Nombre</label>
+							<input id="name" name="name" type="text" required="required"/>
+						</p>
+						<p>
+							<label for="lastname">Apellido(s)</label>
+							<input id="lastname" name="lastname" type="text" required="required"/>
+						</p>
+						<p>
+							<label for="userEmail">Email</label>
+							<input id="userEmail" name="userEmail" placeholder="info@pawhub.me" type="email" required="required" AUTOCOMPLETE=OFF />
+						</p>
+						<p>
+							<label for="userCountry">País</label>
+							<input id="userCountry" name="userCountry" required="required" type="text"/>
+						</p>
+						<p>
+							<label for="userCity">Ciudad</label>
+							<input id="userCity" name="userCity" required="required" type="text"/>
+						</p>
+						<p class="submit">
+							<button id="registerButton1" type="submit">
+								Avísenme cuando PawHub esté listo
+							</button>
+						</p>
+					</fieldset>
+				</form>
+				<form id="formElem2" name="formElem2" action="" method="post">
+					<fieldset class="step">
+						<legend>
+							Datos Personales
+						</legend>
+						<p>
+							<label for="candidate_name">Nombre</label>
+							<input id="candidate_name" name="candidate_name" required="required" type="text" AUTOCOMPLETE=OFF />
+						</p>
+						<p>
+							<label for="candidate_lastname">Apellido(s)</label>
+							<input id="candidate_lastname" name="candidate_lastname" required="required" type="text" AUTOCOMPLETE=OFF />
+						</p>
+						<p>
+							<label for="candidate_email">Email</label>
+							<input id="candidate_email" name="candidate_email" placeholder="info@pawhub.me" required="required" type="email" AUTOCOMPLETE=OFF />
+						</p>
+						<p>
+							<label for="candidate_country">País</label>
+							<input id="candidate_country" name="candidate_country" type="text" required="required" AUTOCOMPLETE=OFF />
+						</p>
+						<p>
+							<label for="candidate_city">Ciudad</label>
+							<input id="candidate_city" name="candidate_city" type="text" required="required" AUTOCOMPLETE=OFF />
+						</p>
+						<p>
+							<label for="candidate_msg">Platícanos algo de ti</label>
+							<textarea id="candidate_msg" required="required" name="candidate_msg">...</textarea>
+						</p>
+						<p>
+							<label for="candidate_interest">¿Qué te interesa de PawHub?</label>
+							<textarea id="candidate_interest" required="required" name="candidate_interest">...</textarea>
+						</p>
+						<p class="submit">
+							<button id="registerButton2" type="submit">
+								Quiero ayudar
+							</button>
+						</p>
+					</fieldset>
+				</form>
+				<form id="formElem3" name="formElem3" action="" method="post" style="clear: both;">
+					<fieldset class="step">
+						<legend>
+							¡Contáctanos!
+						</legend>
+						<p><a href="mailto:info@pawhub.me"><img src="images/mailico.png" alt="contacto" title="info@pawhub.me" /></a></p>
+						<p><a href="https://www.facebook.com/PawHub" target="_blank"><img src="images/icnfb.png" alt="contacto" title="fb.com/PawHub" /></a></p>
+						<p>Revisa nuestro perfil en la plataforma para startups, <a href="https://angel.co/pawhub" target="_blank">AngelList</a></p>
+					</fieldset>
+				</form>
+
+			</div>
+		</div>
+	</head>
+</html>
