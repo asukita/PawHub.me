@@ -8,6 +8,47 @@
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 		<script type="text/javascript" src="js/sliding.form.js"></script>
 
+		<script type="text/javascript">
+			$(document).ready(function() {
+
+				function validar_email(valor) {
+					// creamos nuestra regla con expresiones regulares.
+					var filter = /[\w-\.]{3,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
+					// utilizamos test para comprobar si el parametro valor cumple la regla
+					if (filter.test(valor))
+						return true;
+					else
+						return false;
+				}
+
+				// verificar correo usuario
+				$("#userEmail").change(function() {
+					if ($("#userEmail").val() == '') {
+						alert("Ingresa un email");
+					} else if (validar_email($("#userEmail").val())) {
+
+					} else {
+						alert("El email no es valido \nEjemplo: example@example.com");
+						$("#userEmail").val("");
+					}
+
+				});
+				// verificar correo candidato
+				$("#candidateEmail").change(function() {
+					if ($("#candidateEmail").val() == '') {
+						alert("Ingresa un email");
+					} else if (validar_email($("#candidateEmail").val())) {
+
+					} else {
+						alert("El email no es valido \nEjemplo: example@example.com");
+						$("#candidateEmail").val("");
+					}
+
+				});
+			});
+		</script>
+	</head>
+	<body>
 		<div id="wrapper" align="center">
 			<div id="navigation">
 				<ul>
@@ -23,18 +64,18 @@
 				</ul>
 			</div>
 			<div id="steps">
-				<form id="formElem1" name="formElem1" action="index.html" method="post">
+				<form id="formElem1" name="formElem1" action="" method="post" onsubmit="return Validar(this,1)">
 					<fieldset class="step">
 						<legend>
 							Crea tu cuenta
 						</legend>
 						<p>
-							<label for="name">Nombre</label>
-							<input id="name" name="name" type="text" required="required"/>
+							<label for="userName">Nombre</label>
+							<input id="userName" name="userName" type="text" required="required"/>
 						</p>
 						<p>
-							<label for="lastname">Apellido(s)</label>
-							<input id="lastname" name="lastname" type="text" required="required"/>
+							<label for="userLastname">Apellido(s)</label>
+							<input id="userLastname" name="userLastname" type="text" required="required"/>
 						</p>
 						<p>
 							<label for="userEmail">Email</label>
@@ -55,38 +96,38 @@
 						</p>
 					</fieldset>
 				</form>
-				<form id="formElem2" name="formElem2" action="" method="post">
+				<form id="formElem2" name="formElem2" action="" method="post" onsubmit="return Validar(this,2)">
 					<fieldset class="step">
 						<legend>
 							Datos Personales
 						</legend>
 						<p>
-							<label for="candidate_name">Nombre</label>
-							<input id="candidate_name" name="candidate_name" required="required" type="text" AUTOCOMPLETE=OFF />
+							<label for="candidateName">Nombre</label>
+							<input id="candidateName" name="candidateName" required="required" type="text" AUTOCOMPLETE=OFF />
 						</p>
 						<p>
-							<label for="candidate_lastname">Apellido(s)</label>
-							<input id="candidate_lastname" name="candidate_lastname" required="required" type="text" AUTOCOMPLETE=OFF />
+							<label for="candidateLastname">Apellido(s)</label>
+							<input id="candidateLastname" name="candidateLastname" required="required" type="text" AUTOCOMPLETE=OFF />
 						</p>
 						<p>
-							<label for="candidate_email">Email</label>
-							<input id="candidate_email" name="candidate_email" placeholder="info@pawhub.me" required="required" type="email" AUTOCOMPLETE=OFF />
+							<label for="candidateEmail">Email</label>
+							<input id="candidateEmail" name="candidateEmail" placeholder="info@pawhub.me" required="required" type="email" AUTOCOMPLETE=OFF />
 						</p>
 						<p>
-							<label for="candidate_country">País</label>
-							<input id="candidate_country" name="candidate_country" type="text" required="required" AUTOCOMPLETE=OFF />
+							<label for="candidateCountry">País</label>
+							<input id="candidateCountry" name="candidateCountry" type="text" required="required" AUTOCOMPLETE=OFF />
 						</p>
 						<p>
-							<label for="candidate_city">Ciudad</label>
-							<input id="candidate_city" name="candidate_city" type="text" required="required" AUTOCOMPLETE=OFF />
+							<label for="candidateCity">Ciudad</label>
+							<input id="candidateCity" name="candidateCity" type="text" required="required" AUTOCOMPLETE=OFF />
 						</p>
 						<p>
-							<label for="candidate_msg">Platícanos algo de ti</label>
-							<textarea id="candidate_msg" required="required" name="candidate_msg">...</textarea>
+							<label for="candidateMsg">Platícanos algo de ti</label>
+							<textarea id="candidateMsg" rows="2" cols="50" name="candidateMsg" required>...</textarea>
 						</p>
 						<p>
-							<label for="candidate_interest">¿Qué te interesa de PawHub?</label>
-							<textarea id="candidate_interest" required="required" name="candidate_interest">...</textarea>
+							<label for="candidateInterest">¿Qué te interesa de PawHub?</label>
+							<textarea id="candidateInterest" rows="2" cols="50" name="candidateInterest" required>...</textarea>
 						</p>
 						<p class="submit">
 							<button id="registerButton2" type="submit">
@@ -95,18 +136,113 @@
 						</p>
 					</fieldset>
 				</form>
-				<form id="formElem3" name="formElem3" action="" method="post" style="clear: both;">
+				<form id="formElem3" name="formElem3" action="" method="post">
 					<fieldset class="step">
 						<legend>
 							¡Contáctanos!
 						</legend>
-						<p><a href="mailto:info@pawhub.me"><img src="images/mailico.png" alt="contacto" title="info@pawhub.me" /></a></p>
-						<p><a href="https://www.facebook.com/PawHub" target="_blank"><img src="images/icnfb.png" alt="contacto" title="fb.com/PawHub" /></a></p>
-						<p>Revisa nuestro perfil en la plataforma para startups, <a href="https://angel.co/pawhub" target="_blank">AngelList</a></p>
+						<p>
+							<a href="mailto:info@pawhub.me"><img src="images/mailico.png" alt="contacto" title="info@pawhub.me" /></a>
+						</p>
+						<p>
+							<a href="https://www.facebook.com/PawHub" target="_blank"><img src="images/icnfb.png" alt="contacto" title="fb.com/PawHub" /></a>
+						</p>
+						<p>
+							Revisa nuestro perfil en la plataforma para startups, <a href="https://angel.co/pawhub" target="_blank">AngelList</a>
+						</p>
 					</fieldset>
 				</form>
 
 			</div>
 		</div>
-	</head>
+	</body>
+	<script>
+		//Funci�n que verifica campos del formulario vac�os
+		function Validar(f, inp) {
+
+			//verificar datos usuario
+			if (inp == 1) {
+				if (f.userName.value == "") {
+					alert("Por favor escribe tu nombre");
+					f.userName.focus();
+					return false;
+				}
+				if (f.userLastname.value == "") {
+					alert("Por favor escribe tu apellido");
+					f.userLastname.focus();
+					return false;
+				}
+				if (f.userEmail.value == "") {
+					alert("Por favor escribe tu email");
+					f.userEmail.focus();
+					return false;
+				}
+				if (f.userCountry.value == "") {
+					alert("Ingresa tu País");
+					f.userCountry.focus();
+					return false;
+				}
+				if (f.userCity.value == "") {
+					alert("Ingresa tu Ciudad");
+					f.userCity.focus();
+					return false;
+				}
+
+			}
+
+			if (inp == 2) {
+				//verificar datos candidato
+				if (f.candidateName.value == "") {
+					alert("Por favor escribe tu nombre");
+					f.candidateName.focus();
+					return false;
+				}
+				if (f.candidateLastname.value == "") {
+					alert("Por favor escribe tu apellido");
+					f.candidateLastname.focus();
+					return false;
+				}
+				if (f.candidateEmail.value == "") {
+					alert("Por favor escribe tu email");
+					f.candidateEmail.focus();
+					return false;
+				}
+				if (f.candidateCountry.value == "") {
+					alert("Ingresa tu País");
+					f.candidateCountry.focus();
+					return false;
+				}
+				if (f.candidateCity.value == "") {
+					alert("Ingresa tu Ciudad");
+					f.candidateCity.focus();
+					return false;
+				}
+				if ((f.candidateMsg.value == "")||(f.candidateMsg.value == "...")||(f.candidateMsg.value.length == 0)) { //revisar espacios
+					alert("¡Queremos saber más de ti!");
+					f.candidateMsg.focus();
+					return false;
+				}
+				if ((f.candidateInterest.value == "")||(f.candidateInterest.value == "...")||(f.candidateInterest.value.length == 0)) { //revisar espacios
+					alert("¡Queremos saber tus intereses!");
+					f.candidateInterest.focus();
+					return false;
+				}
+
+			}
+			
+			showValues(inp);
+
+		}
+
+		function showValues(inp) {
+			var str;
+			if (inp == 1)
+				str = $("#formElem1").serialize();
+			else {
+				str = $("#formElem2").serialize();
+			}
+			alert(str);
+		}
+	</script>
+
 </html>
