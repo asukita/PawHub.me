@@ -1,13 +1,15 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 		<meta name="viewport" content="width=device-width, initial-scale = 1.0, user-scalable = no">
 		<title>Contacto</title>
 		<link rel="stylesheet" href="css/formstyle.css" type="text/css" media="screen"/>
+		<link rel="stylesheet" href="css/grid.css" type="text/css" media="screen">
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,800,700,300' rel='stylesheet' type='text/css'>
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 		<script type="text/javascript" src="js/sliding.form.js"></script>
-
+		
 		<script type="text/javascript">
 			$(document).ready(function() {
 
@@ -45,25 +47,72 @@
 					}
 
 				});
+
+				//DROP menu
+				if ($(window).width() < 750) {
+					$(".btn_dropdown").click(function() {
+						$(".navigation").slideToggle("slow");
+					});
+					$(".navigation li").click(function() {
+						$(".navigation").hide("fast");
+					});
+				}
 			});
 		</script>
 	</head>
 	<body>
+
+		<div class="menu">
+			<div class="container clearfix">
+
+				<div id="logo">
+					<a href="index.html"><img src="images/logo.png" /></a>
+				</div>
+
+				<div id="nav">
+					<a class="btn_dropdown" data-toggle="collapse" data-target=".nav-collapse_">MENU</a>
+					<ul class="navigation">
+						<li data-slide="1">
+							<a href="index.html">Home</a>
+						</li>
+						<li data-slide="2">
+							<a href="index.html#slide2">What is</a>
+						</li>
+						<li data-slide="4">
+							<a href="index.html#slide4">Tools</a>
+						</li>
+						<li data-slide="6">
+							<a href="index.html#slide6">Motto</a>
+						</li>
+						<li data-slide="7">
+							<a href="index.html#slide7">Team</a>
+						</li>
+						<li data-slide="8" id="li_contact">
+							<a>Apóyanos</a>
+						</li>
+						<div class="clear"></div>
+					</ul>
+				</div>
+
+			</div>
+		</div>
+
 		<div id="wrapper" align="center">
 			<div id="navigation">
 				<ul>
 					<li id="li1" class="selected">
-						<a href="#">Pre-Registro de Usuarios</a>
+						<a href="#">Pre-regístrate</a>
 					</li>
 					<li id="li2">
-						<a href="#">Â¿Te gustarÃ­a ser parte de PawHub?</a>
+						<a href="#">Intégrate</a>
 					</li>
 					<li id="li3">
-						<a href="#">Â¿Te gustarÃ­a apoyar/invertir?</a>
+						<a href="#">Apóyanos</a>
 					</li>
 				</ul>
 			</div>
 			<div id="steps">
+				<fb:login-button show-faces="true" width="200" max-rows="1"></fb:login-button>
 				<form id="formElem1" name="formElem1" action="" method="post" onsubmit="return Validar(this,1)">
 					<fieldset class="step">
 						<legend>
@@ -82,21 +131,18 @@
 							<input id="userEmail" name="userEmail" placeholder="info@pawhub.me" type="email" required="required" AUTOCOMPLETE=OFF />
 						</p>
 						<p>
-							<label for="userCountry">PaÃ­s</label>
-							<input id="userCountry" name="userCountry" required="required" type="text"/>
-						</p>
-						<p>
 							<label for="userCity">Ciudad</label>
 							<input id="userCity" name="userCity" required="required" type="text"/>
 						</p>
 						<p class="submit">
 							<button id="registerButton1" type="submit">
-								AvÃ­senme cuando PawHub estÃ© listo
+								Avísenme cuando PawHub esté listo
 							</button>
 						</p>
 					</fieldset>
 				</form>
-				<form id="formElem2" name="formElem2" action="" method="post" onsubmit="return Validar(this,2)">
+
+				<form id="formElem2" name="formElem2" action="contacto_Pawhub.php" method="post" onsubmit="return Validar(this,2)">
 					<fieldset class="step">
 						<legend>
 							Datos Personales
@@ -114,19 +160,15 @@
 							<input id="candidateEmail" name="candidateEmail" placeholder="info@pawhub.me" required="required" type="email" AUTOCOMPLETE=OFF />
 						</p>
 						<p>
-							<label for="candidateCountry">PaÃ­s</label>
-							<input id="candidateCountry" name="candidateCountry" type="text" required="required" AUTOCOMPLETE=OFF />
-						</p>
-						<p>
 							<label for="candidateCity">Ciudad</label>
 							<input id="candidateCity" name="candidateCity" type="text" required="required" AUTOCOMPLETE=OFF />
 						</p>
 						<p>
-							<label for="candidateMsg">PlatÃ­canos algo de ti</label>
+							<label for="candidateMsg">Platícanos algo de ti</label>
 							<textarea id="candidateMsg" rows="2" cols="50" name="candidateMsg" required>...</textarea>
 						</p>
 						<p>
-							<label for="candidateInterest">Â¿QuÃ© te interesa de PawHub?</label>
+							<label for="candidateInterest">¿Qué te interesa de PawHub?</label>
 							<textarea id="candidateInterest" rows="2" cols="50" name="candidateInterest" required>...</textarea>
 						</p>
 						<p class="submit">
@@ -139,7 +181,7 @@
 				<form id="formElem3" name="formElem3" action="" method="post">
 					<fieldset class="step">
 						<legend>
-							Â¡ContÃ¡ctanos!
+							¡Contáctanos!
 						</legend>
 						<p>
 							<a href="mailto:info@pawhub.me"><img src="images/mailico.png" alt="contacto" title="info@pawhub.me" /></a>
@@ -157,7 +199,7 @@
 		</div>
 	</body>
 	<script>
-		//Funciï¿½n que verifica campos del formulario vacï¿½os
+		//Funcion que verifica campos del formulario vacios para IE y Safari
 		function Validar(f, inp) {
 
 			//verificar datos usuario
@@ -175,11 +217,6 @@
 				if (f.userEmail.value == "") {
 					alert("Por favor escribe tu email");
 					f.userEmail.focus();
-					return false;
-				}
-				if (f.userCountry.value == "") {
-					alert("Ingresa tu PaÃ­s");
-					f.userCountry.focus();
 					return false;
 				}
 				if (f.userCity.value == "") {
@@ -207,62 +244,55 @@
 					f.candidateEmail.focus();
 					return false;
 				}
-				if (f.candidateCountry.value == "") {
-					alert("Ingresa tu PaÃ­s");
-					f.candidateCountry.focus();
-					return false;
-				}
 				if (f.candidateCity.value == "") {
 					alert("Ingresa tu Ciudad");
 					f.candidateCity.focus();
 					return false;
 				}
 				if ((f.candidateMsg.value == "") || (f.candidateMsg.value == "...") || (f.candidateMsg.value.length == 0)) {//revisar espacios
-					alert("Â¡Queremos saber mÃ¡s de ti!");
+					alert("¡¡¡Queremos saber más de ti!!!");
 					f.candidateMsg.focus();
 					return false;
 				}
 				if ((f.candidateInterest.value == "") || (f.candidateInterest.value == "...") || (f.candidateInterest.value.length == 0)) {//revisar espacios
-					alert("Â¡Queremos saber tus intereses!");
+					alert("¡¡¡Queremos saber tus intereses!!!");
 					f.candidateInterest.focus();
 					return false;
 				}
 
 			}
 
-			showValues(inp);
+		}
+
+		function sendValues(inp) {
+			var str;
+			str = $("#formElem1").serialize();
+			
+			 try {
+			 $.ajax({
+			 type : "POST",
+			 url : "http://wskrs.com/Register/PreUser",
+			 data : str,
+			 dataType : "json",
+			 error : callback_error,
+			 success : recuperarInfo
+			 });
+			 } catch(ex) {
+			 alert(ex.description);
+			 }
+			
+			alert(str);
 
 		}
 
-		function showValues(inp) {
-			var str;
-			if (inp == 1) {
-				str = $("#formElem1").serialize();
+		// mostramos un mensaje con la causa del problema
+		function callback_error(XMLHttpRequest, textStatus, errorThrown) {
+			alert(errorThrown);
+		}
 
-				/**
-				 $.ajax({
-				 type : "POST",
-				 url : "",
-				 data : str,
-				 success : function(data) {
-
-				 }
-				 });**/
-
-			} else if (inp == 2) {
-				str = $("#formElem2").serialize();
-
-				/**
-				 $.ajax({
-				 type : "POST",
-				 url : "",
-				 data : str,
-				 success : function(data) {
-
-				 }
-				 });**/
-			}
-
+		//si tiene exito recuperamos la info
+		function recuperarInfo(ajaxResponse, textStatus) {
+			alert(ajaxResponse + textStatus + "lalalala");
 		}
 	</script>
 
