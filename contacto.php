@@ -1,4 +1,15 @@
 <!DOCTYPE HTML>
+<?php
+if(array_key_exists("login",$_GET)) {
+$oauth_provider=$_GET['oauth_provider'];
+if($oauth_provider=='twitter') {
+header("Location: login-twitter.php");
+}
+}
+$userName=$_GET['userName'];
+$userLastname=$_GET['userLastname'];
+$userCity=$_GET['userCity'];
+?>
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
@@ -18,52 +29,137 @@
 		<script type="text/javascript">
 			$(document).ready(function() {
 
-				function validar_email(valor) {
-					// creamos nuestra regla con expresiones regulares.
-					var filter = /[\w-\.]{3,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
-					// utilizamos test para comprobar si el parametro valor cumple la regla
-					if (filter.test(valor))
-						return true;
-					else
-						return false;
-				}
+function validar_email(valor) {
+// creamos nuestra regla con expresiones regulares.
+var filter = /[\w-\.]{3,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
+// utilizamos test para comprobar si el parametro valor cumple la regla
+if (filter.test(valor))
+return true;
+else
+return false;
+}
 
-				// verificar correo usuario
-				$("#userEmail").change(function() {
-					if ($("#userEmail").val() == '') {
-						alert("Ingresa un email");
-					} else if (validar_email($("#userEmail").val())) {
+// verificar correo usuario
+$("#userEmail").change(function() {
+if ($("#userEmail").val() == '') {
+alert("Ingresa un email");
+} else if (validar_email($("#userEmail").val())) {
 
-					} else {
-						alert("El email no es valido \nEjemplo: example@example.com");
-						$("#userEmail").val("");
-					}
+} else {
+alert("El email no es valido \nEjemplo: example@example.com");
+$("#userEmail").val("");
+}
 
-				});
-				// verificar correo candidato
-				$("#candidateEmail").change(function() {
-					if ($("#candidateEmail").val() == '') {
-						alert("Ingresa un email");
-					} else if (validar_email($("#candidateEmail").val())) {
+});
+// verificar correo candidato
+$("#candidateEmail").change(function() {
+if ($("#candidateEmail").val() == '') {
+alert("Ingresa un email");
+} else if (validar_email($("#candidateEmail").val())) {
 
-					} else {
-						alert("El email no es valido \nEjemplo: example@example.com");
-						$("#candidateEmail").val("");
-					}
+} else {
+alert("El email no es valido \nEjemplo: example@example.com");
+$("#candidateEmail").val("");
+}
 
-				});
+});
 
-				//DROP menu
-				if ($(window).width() < 750) {
-					$(".btn_dropdown").click(function() {
-						$(".navigation").slideToggle("slow");
-					});
-					$(".navigation li").click(function() {
-						$(".navigation").hide("fast");
-					});
-				}
-			});
+//DROP menu
+if ($(window).width() < 750) {
+$(".btn_dropdown").click(function() {
+$(".navigation").slideToggle("slow");
+});
+$(".navigation li").click(function() {
+$(".navigation").hide("fast");
+});
+}
+
+//GETTERS
+
+var userN = '<?php echo $userName; ?>
+	';
+	var userL = '
+<?php echo $userLastname; ?>
+	';
+	var userC = '
+<?php echo $userCity; ?>
+	';
+
+	if(userN != '')
+	$('#userName').val(userN);
+
+	if(userL != '')
+	$('#userLastname').val(userL);
+
+	if(userC != '')
+	$('#userCity').val(userC);
+
+	});
 		</script>
+		<!-- FACEBOOK LOGIN -->
+
+		<script>
+			// Additional JS functions here
+			window.fbAsyncInit = function() {
+				FB.init({
+					appId : '594368320614740', // App ID
+					channelUrl : '//WWW.PAWHUB.ME/channel.html', // Channel File
+					status : true, // check login status
+					cookie : true, // enable cookies to allow the server to access the session
+					xfbml : true // parse XFBML
+				});
+
+				// Here we subscribe to the auth.authResponseChange JavaScript event. This event is fired
+				// for any authentication related change, such as login, logout or session refresh. This means that
+				// whenever someone who was previously logged out tries to log in again, the correct case below
+				// will be handled.
+				FB.Event.subscribe('auth.authResponseChange', function(response) {
+					// Here we specify what we do with the response anytime this event occurs.
+					if (response.status === 'connected') {
+						// The response object is returned with a status field that lets the app know the current
+						// login status of the person. In this case, we're handling the situation where they
+						// have logged in to the app.
+						testAPI();
+
+					} else if (response.status === 'not_authorized') {
+						// In this case, the person is logged into Facebook, but not into the app, so we call
+
+						alert('No has autorizado a nuestra App tener acceso a tus datos, favor de llenar la forma a mano');
+					} 
+				});
+			};
+
+			// Load the SDK asynchronously
+			( function(d) {
+					var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+					if (d.getElementById(id)) {
+						return;
+					}
+					js = d.createElement('script');
+					js.id = id;
+					js.async = true;
+					js.src = "//connect.facebook.net/en_US/all.js";
+					ref.parentNode.insertBefore(js, ref);
+				}(document));
+
+			// Here we run a very simple test of the Graph API after login is successful.
+			// This testAPI() function is only called in those cases.
+			function testAPI() {
+				console.log('Welcome!  Fetching your information.... ');
+				FB.api('/me', function(response) {
+					var userName = response.name;
+					var userEmail = response.email;
+					var userCity = response.location.name;
+
+					$('#userName').val(userName);
+					$('#userEmail').val(userEmail);
+					$('#userCity').val(userCity);
+					
+				});
+			}
+		</script>
+
+		<!-- TERMINA CODIGO FB -->
 	</head>
 	<body>
 
@@ -128,8 +224,8 @@
 						</p>
 						<br />
 						<div class="btnsredes">
-							<img src="images/fbsign.jpg" style="margin-right: 22px; margin-bottom: 7px;" />
-							<img src="images/twsign.jpg" style="margin-bottom: 7px;" />
+							<a href="#" onclick="FB.login();"><img src="images/fbsign.jpg" style="margin-right: 22px; margin-bottom: 7px;" /></a>
+							<a href="?login&oauth_provider=twitter"><img src="images/twsign.jpg" style="margin-bottom: 7px;" /></a>
 						</div>
 
 						<p>
@@ -285,9 +381,13 @@
 				$.ajax({
 					type : "POST",
 					crossDomain : true,
+					xhrFields : {
+						withCredentials : false
+					},
+					cache : false,
 					url : "http://wskrs.com/Register/PreUser",
 					data : str,
-					dataType : "json", 
+					dataType : "json",
 					error : callback_error,
 					success : recuperarInfo
 				});
@@ -307,8 +407,8 @@
 
 		//si tiene exito recuperamos la info
 		function recuperarInfo(ajaxResponse, textStatus) {
-		alert("Tus datos han sido enviados\n¡¡¡Gracias!!!");
-		$("form").trigger('reset');
+			alert("Tus datos han sido enviados\n¡¡¡Gracias!!!");
+			$("form").trigger('reset');
 		}
 	</script>
 

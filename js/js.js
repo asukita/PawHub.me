@@ -147,7 +147,7 @@ jQuery(document).ready(function($) {
 				scrollTop : goalPx
 			}, 2000, 'easeInOutQuint');
 		}else{
-			location.href="contacto.html";
+			location.href="contacto.php";
 
 		}
 	}
