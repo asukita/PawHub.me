@@ -15,19 +15,20 @@ if (!empty($_GET['oauth_verifier']) && !empty($_SESSION['oauth_token']) && !empt
 // Let's get the user's info
     $user_info = $twitteroauth->get('account/verify_credentials');
 // Print user's info
-    echo "¡¡Tus datos han sido enviados!!";
-    $userFullName = $user_info->name;
-	$split = explode(' ', $userFullName);
-	$userName = $split[0];
-	$userLastname = $split[1];
+    
+    $userName = $user_info->screen_name;
 	$userCity = $user_info->location;
-	$bodytag = str_replace("Ã©", "é", $userCity); 
-	$bodytag = str_replace("Ã¡", "á", $userCity); 
-	$bodytag = str_replace("Ã", "í", $userCity); 
-	$bodytag = str_replace("Ã³", "ó", $userCity); 
-	$bodytag = str_replace("Ãº", "ú", $userCity);
+	$userCity = str_replace("Ã©", "é", $userCity); 
+	$userCity = str_replace("Ã¡", "á", $userCity); 
+	$userCity = str_replace("Ã", "í", $userCity); 
+	$userCity = str_replace("Ã³", "ó", $userCity);
+	$userCity = str_replace("í³", "ó", $userCity); 
+	$userCity= str_replace("Ãº", "ú", $userCity);  
+	$userCity= str_replace("íº", "ú", $userCity);
+	
+	
 	 
-	echo $userName." ".$userCity."".$userLastName;
+	echo "Espera a que tus datos se actualicen.";
 	
    	if (isset($user_info->error)) {
         // Something's wrong, go back to square 1  
@@ -38,10 +39,9 @@ if (!empty($_GET['oauth_verifier']) && !empty($_SESSION['oauth_token']) && !empt
 		<script type="text/javascript">
 				
 				var userName = '<?php echo $userName; ?>';
-				var userLastname = '<?php echo $userLastname; ?>';
-				var userCity = '<?php echo $bodytag; ?>'; 
+				var userCity = '<?php echo $userCity; ?>'; 
 				
-				location.href = "contactoLoginFB.php?userName="+userName+"&userLastname="+userLastname+"&userCity="+userCity;
+				location.href = "contactoLoginFB.php?userName="+userName+"&userCity="+userCity+"&tw=true";
 				
 
 		</script>

@@ -360,6 +360,17 @@ span.error {
 	cursor: pointer;
 }
 
+.mesagges p{
+	background-color: rgba(255, 212, 0, 0.5)!important;
+	color: #971E49;
+    font-weight: bold;
+}
+
+p.error {
+	background-color: rgba(255, 0, 0, 0.5)!important;
+    font-weight: bold;
+}
+
 /*ESTILOS PARA IE */
 
 .no-js body{
@@ -376,9 +387,16 @@ span.error {
 }
 
 .no-js #wrapper{
-	background: #FFF;
+	background: #FFF; 
 	border: 1px solid #000;
 }
+.no-js .messages p{
+	background: rgb(255, 0, 0) !important;
+	color: #971E49;
+    font-weight: bold;
+}
+
+
 
 
 

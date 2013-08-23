@@ -9,6 +9,8 @@ header("Location: login-twitter.php");
 $userName=$_GET['userName'];
 $userLastname=$_GET['userLastname'];
 $userCity=$_GET['userCity'];
+$tw= 'false';
+$tw=$_GET['tw'];
 ?>
 <html>
 	<head>
@@ -29,72 +31,79 @@ $userCity=$_GET['userCity'];
 		<script type="text/javascript">
 			$(document).ready(function() {
 
-function validar_email(valor) {
-// creamos nuestra regla con expresiones regulares.
-var filter = /[\w-\.]{3,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
-// utilizamos test para comprobar si el parametro valor cumple la regla
-if (filter.test(valor))
-return true;
-else
-return false;
-}
-
-// verificar correo usuario
-$("#userEmail").change(function() {
-if ($("#userEmail").val() == '') {
-alert("Ingresa un email");
-} else if (validar_email($("#userEmail").val())) {
-
-} else {
-alert("El email no es valido \nEjemplo: example@example.com");
-$("#userEmail").val("");
-}
-
-});
-// verificar correo candidato
-$("#candidateEmail").change(function() {
-if ($("#candidateEmail").val() == '') {
-alert("Ingresa un email");
-} else if (validar_email($("#candidateEmail").val())) {
-
-} else {
-alert("El email no es valido \nEjemplo: example@example.com");
-$("#candidateEmail").val("");
-}
-
-});
-
-//DROP menu
-if ($(window).width() < 750) {
-$(".btn_dropdown").click(function() {
-$(".navigation").slideToggle("slow");
-});
-$(".navigation li").click(function() {
-$(".navigation").hide("fast");
-});
-}
-
-//GETTERS
-
-var userN = '<?php echo $userName; ?>
-	';
-	var userL = '
-<?php echo $userLastname; ?>
-	';
-	var userC = '
-<?php echo $userCity; ?>
-	';
-
-	if(userN != '')
-	$('#userName').val(userN);
-
-	if(userL != '')
-	$('#userLastname').val(userL);
-
-	if(userC != '')
-	$('#userCity').val(userC);
-
-	});
+		function validar_email(valor) {
+		// creamos nuestra regla con expresiones regulares.
+		var filter = /[\w-\.]{3,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
+		// utilizamos test para comprobar si el parametro valor cumple la regla
+		if (filter.test(valor))
+			return true;
+		else
+			return false;
+		}
+		
+		// verificar correo usuario
+		$("#userEmail").change(function() {
+			if ($("#userEmail").val() == '') {
+				alert("Ingresa un email");
+			} else if (validar_email($("#userEmail").val())) {
+		
+			} else {
+				alert("El email no es valido \nEjemplo: example@example.com");
+				$("#userEmail").val("");
+			}
+		
+		});
+		
+		// verificar correo candidato
+		$("#candidateEmail").change(function() {
+			if ($("#candidateEmail").val() == '') {
+				$('#mesagges2').css('display','block');
+				$('#mesagges2 p').addClass('error');
+				$('#mesagges2 p').text("Ingresa un email");
+			} else if (validar_email($("#candidateEmail").val())) {
+		
+			} else {
+				alert("El email no es valido \nEjemplo: example@example.com");
+				$("#candidateEmail").val("");
+			}
+		
+		});
+		
+		//DROP menu
+		if ($(window).width() < 750) {
+			$(".btn_dropdown").click(function() {
+				$(".navigation").slideToggle("slow");
+			});
+			
+			$(".navigation li").click(function() {
+				$(".navigation").hide("fast");
+			});
+		}
+		
+		//GETTERS DE TW
+		
+			var userN = '<?php echo $userName; ?>';
+			var userL = '<?php echo $userLastname; ?>';
+			var userC = '<?php echo $userCity; ?>';
+			var tw = '<?php echo $tw; ?>';
+				
+			if(tw == 'true'){
+				$('.btnsredes').remove();
+				$('#mesagges').css('display','block');
+				$('#mesagges p').text('¡¡Ya casi estás pre-registrado!! Verifica tus datos por favor');
+				
+				if(userN != '')
+					$('#userName').val(userN);
+		
+				if(userL != '')
+					$('#userLastname').val(userL);
+		
+				if(userC != '')
+					$('#userCity').val(userC);
+			}
+		
+			});
+			
 		</script>
 		<!-- FACEBOOK LOGIN -->
 
@@ -124,8 +133,9 @@ var userN = '<?php echo $userName; ?>
 					} else if (response.status === 'not_authorized') {
 						// In this case, the person is logged into Facebook, but not into the app, so we call
 
-						alert('No has autorizado a nuestra App tener acceso a tus datos, favor de llenar la forma a mano');
-					} 
+						$('#mesagges').css('display','block');
+						$('#mesagges p').text('No has autorizado a nuestra App tener acceso a tus datos, favor de llenar la forma a mano');
+					}
 				});
 			};
 
@@ -145,18 +155,23 @@ var userN = '<?php echo $userName; ?>
 			// Here we run a very simple test of the Graph API after login is successful.
 			// This testAPI() function is only called in those cases.
 			function testAPI() {
+				
 				console.log('Welcome!  Fetching your information.... ');
 				FB.api('/me', function(response) {
 					var userName = response.name;
 					var userEmail = response.email;
 					var userCity = response.location.name;
 
+					$('.btnsredes').remove();
+					$('#mesagges').css('display','block');
+					$('#mesagges p').text('Ya has sido pre-registrado en PawHub. Éstos son tus datos, verifícalos ¡¡¡Muchas gracias!!!');
 					$('#userName').val(userName);
 					$('#userEmail').val(userEmail);
 					$('#userCity').val(userCity);
 					
 				});
 			}
+			
 		</script>
 
 		<!-- TERMINA CODIGO FB -->
@@ -227,6 +242,9 @@ var userN = '<?php echo $userName; ?>
 							<a href="#" onclick="FB.login();"><img src="images/fbsign.jpg" style="margin-right: 22px; margin-bottom: 7px;" /></a>
 							<a href="?login&oauth_provider=twitter"><img src="images/twsign.jpg" style="margin-bottom: 7px;" /></a>
 						</div>
+						<div class="mesagges" style="display: none;">
+							<p>This is a test</p>
+						</div>
 
 						<p>
 							<label for="userName">Nombre</label>
@@ -252,6 +270,9 @@ var userN = '<?php echo $userName; ?>
 
 				<form id="formElem2" name="formElem2" action="mail.php" method="post" onsubmit="return Validar(this,2)">
 					<fieldset class="step">
+						<div id="mesagges2" style="display: none;">
+							<p>This is a test</p>
+						</div>
 						<legend>
 							Datos Personales
 						</legend>
@@ -312,22 +333,30 @@ var userN = '<?php echo $userName; ?>
 				var f = document.getElementById('formElem1');
 
 				if (f.userName.value == "") {
-					alert("Por favor escribe tu nombre");
+					$('#mesagges').css('display','block');
+					$('#mesagges p').addClass('error');
+					$('#mesagges p').text("Por favor escribe tu nombre");
 					f.userName.focus();
 					return false;
 				}
 				if (f.userLastname.value == "") {
-					alert("Por favor escribe tu apellido");
+					$('#mesagges').css('display','block');
+					$('#mesagges p').addClass('error');
+					$('#mesagges p').text("Por favor escribe tu apellido");
 					f.userLastname.focus();
 					return false;
 				}
 				if (f.userEmail.value == "") {
-					alert("Por favor escribe tu email");
+					$('#mesagges').css('display','block');
+					$('#mesagges p').addClass('error');
+					$('#mesagges p').text("Por favor escribe tu email");
 					f.userEmail.focus();
 					return false;
 				}
 				if (f.userCity.value == "") {
-					alert("Ingresa tu Ciudad");
+					$('#mesagges').css('display','block');
+					$('#mesagges p').addClass('error');
+					$('#mesagges p').text("Ingresa tu Ciudad");
 					f.userCity.focus();
 					return false;
 				}
@@ -339,32 +368,44 @@ var userN = '<?php echo $userName; ?>
 			if (inp == 2) {
 				//verificar datos candidato
 				if (f.candidateName.value == "") {
-					alert("Por favor escribe tu nombre");
+					$('#mesagges2').css('display','block');
+					$('#mesagges2 p').addClass('error');
+					$('#mesagges2 p').text("Por favor escribe tu nombre");
 					f.candidateName.focus();
 					return false;
 				}
 				if (f.candidateLastname.value == "") {
-					alert("Por favor escribe tu apellido");
+					$('#mesagges2').css('display','block');
+					$('#mesagges2 p').addClass('error');
+					$('#mesagges2 p').text("Por favor escribe tu apellido");
 					f.candidateLastname.focus();
 					return false;
 				}
 				if (f.candidateEmail.value == "") {
-					alert("Por favor escribe tu email");
+					$('#mesagges2').css('display','block');
+					$('#mesagges2 p').addClass('error');
+					$('#mesagges2 p').text("Por favor escribe tu email");
 					f.candidateEmail.focus();
 					return false;
 				}
 				if (f.candidateCity.value == "") {
-					alert("Ingresa tu Ciudad");
+					$('#mesagges2').css('display','block');
+					$('#mesagges2 p').addClass('error');
+					$('#mesagges2 p').text("Ingresa tu Ciudad");
 					f.candidateCity.focus();
 					return false;
 				}
 				if ((f.candidateMsg.value == "") || (f.candidateMsg.value == "...") || (f.candidateMsg.value.length == 0)) {//revisar espacios
-					alert("¡¡¡Queremos saber más de ti!!!");
+					$('#mesagges2').css('display','block');
+					$('#mesagges2 p').addClass('error');
+					$('#mesagges2 p').text("¡¡¡Queremos saber más de ti!!!");
 					f.candidateMsg.focus();
 					return false;
 				}
 				if ((f.candidateInterest.value == "") || (f.candidateInterest.value == "...") || (f.candidateInterest.value.length == 0)) {//revisar espacios
-					alert("¡¡¡Queremos saber tus intereses!!!");
+					$('#mesagges2').css('display','block');
+					$('#mesagges2 p').addClass('error');
+					$('#mesagges2 p').text("¡¡¡Queremos saber tus intereses!!!");
 					f.candidateInterest.focus();
 					return false;
 				}
@@ -392,22 +433,34 @@ var userN = '<?php echo $userName; ?>
 					success : recuperarInfo
 				});
 			} catch(ex) {
-				alert(ex.description);
+				$('#mesagges').css('display','block');
+				$('#mesagges p').addClass('error');
+				$('#mesagges p').text("Ha ocurrido un error\n"+ex.description);
+				$('#mesagges2').css('display','block');
+				$('#mesagges2 p').addClass('error');
+				$('#mesagges2 p').text("Ha ocurrido un error\n"+ex.description);
 			}
 
-			//alert(str);
 
 		}
 
 		// mostramos un mensaje con la causa del problema
 		function callback_error(XMLHttpRequest, textStatus, errorThrown) {
-			alert("Ha ocurrido un error al registrarte, por favor intenta nuevamente");
+			$('#mesagges').css('display','block');
+			$('#mesagges p').addClass('error');
+			$('#mesagges p').text("Ha ocurrido un error al registrarte, por favor intenta nuevamente");
+			$('#mesagges2').css('display','block');
+			$('#mesagges2 p').addClass('error');
+			$('#mesagges2 p').text('Tus datos han sido enviados.¡¡¡Gracias!!!');
 			alert(XMLHttpRequest + textStatus + errorThrown);
 		}
 
 		//si tiene exito recuperamos la info
 		function recuperarInfo(ajaxResponse, textStatus) {
-			alert("Tus datos han sido enviados\n¡¡¡Gracias!!!");
+			$('#mesagges').css('display','block');
+			$('#mesagges p').text('Tus datos han sido enviados.¡¡¡Gracias!!!');
+			$('#mesagges2').css('display','block');
+			$('#mesagges2 p').text('Tus datos han sido enviados.¡¡¡Gracias!!!');
 			$("form").trigger('reset');
 		}
 	</script>
