@@ -189,7 +189,7 @@ var userN = '<?php echo $userName; ?>
 							<a href="index.html#slide7">Team</a>
 						</li>
 						<li data-slide="8" id="li_contact">
-							<a>Apóyanos</a>
+							<a>Apï¿½yanos</a>
 						</li>
 						<div class="clear"></div>
 					</ul>
@@ -202,13 +202,13 @@ var userN = '<?php echo $userName; ?>
 			<div id="navigation">
 				<ul>
 					<li id="li1" class="selected">
-						<a href="#">Pre-regístrate</a>
+						<a href="#">Pre-regï¿½strate</a>
 					</li>
 					<li id="li2">
-						<a href="#">Intégrate</a>
+						<a href="#">Intï¿½grate</a>
 					</li>
 					<li id="li3">
-						<a href="#">Apóyanos</a>
+						<a href="#">Apï¿½yanos</a>
 					</li>
 				</ul>
 			</div>
@@ -220,7 +220,7 @@ var userN = '<?php echo $userName; ?>
 							Pre Registro
 						</legend>
 						<p class="infohead">
-							Pre-regístrate y mantente informado del avance del proyecto.
+							Pre-regï¿½strate y mantente informado del avance del proyecto.
 						</p>
 						<br />
 						<div class="btnsredes">
@@ -245,7 +245,7 @@ var userN = '<?php echo $userName; ?>
 							<input id="userCity" name="userCity" required="required" type="text"/>
 						</p>
 
-						<input class="submit" type="button" onclick="return Validar(this,1)" value="Avísenme cuando PawHub esté listo" />
+						<input class="submit" type="button" onclick="return Validar(this,1)" value="Avï¿½senme cuando PawHub estï¿½ listo" />
 
 					</fieldset>
 				</form>
@@ -272,11 +272,11 @@ var userN = '<?php echo $userName; ?>
 							<input id="candidateCity" name="candidateCity" type="text" required="required" AUTOCOMPLETE=OFF />
 						</p>
 						<p>
-							<label for="candidateMsg" style="margin-top: 7px;">Platícanos de ti:</label>
+							<label for="candidateMsg" style="margin-top: 7px;">Platï¿½canos de ti:</label>
 							<textarea id="candidateMsg" rows="2" cols="50" name="candidateMsg" required>...</textarea>
 						</p>
 						<p>
-							<label for="candidateInterest" style="line-height: 17px; margin-top: 5px;">¿Qué te interesa de PawHub?</label>
+							<label for="candidateInterest" style="line-height: 17px; margin-top: 5px;">ï¿½Quï¿½ te interesa de PawHub?</label>
 							<textarea id="candidateInterest" rows="2" cols="50" name="candidateInterest" required>...</textarea>
 						</p>
 						<input class="submit" type="submit" value="Quiero ayudar" style="width: 160px!important; margin: 23px 180px;" />
@@ -285,7 +285,7 @@ var userN = '<?php echo $userName; ?>
 				<form id="formElem3" name="formElem3" action="" method="post">
 					<fieldset class="step">
 						<legend>
-							¡Contáctanos!
+							ï¿½Contï¿½ctanos!
 						</legend>
 						<p>
 							<a href="mailto:info@pawhub.me"><img src="images/mailico.png" alt="contacto" title="info@pawhub.me" /></a>
@@ -359,12 +359,12 @@ var userN = '<?php echo $userName; ?>
 					return false;
 				}
 				if ((f.candidateMsg.value == "") || (f.candidateMsg.value == "...") || (f.candidateMsg.value.length == 0)) {//revisar espacios
-					alert("¡¡¡Queremos saber más de ti!!!");
+					alert("ï¿½ï¿½ï¿½Queremos saber mï¿½s de ti!!!");
 					f.candidateMsg.focus();
 					return false;
 				}
 				if ((f.candidateInterest.value == "") || (f.candidateInterest.value == "...") || (f.candidateInterest.value.length == 0)) {//revisar espacios
-					alert("¡¡¡Queremos saber tus intereses!!!");
+					alert("ï¿½ï¿½ï¿½Queremos saber tus intereses!!!");
 					f.candidateInterest.focus();
 					return false;
 				}
@@ -385,7 +385,7 @@ var userN = '<?php echo $userName; ?>
 						withCredentials : false
 					},
 					cache : false,
-					url : "http://wskrs.com/Register/PreUser",
+					url : "http://localhost:49528/Register/PreUser?jsoncallback=?",
 					data : str,
 					dataType : "json",
 					error : callback_error,
@@ -407,7 +407,7 @@ var userN = '<?php echo $userName; ?>
 
 		//si tiene exito recuperamos la info
 		function recuperarInfo(ajaxResponse, textStatus) {
-			alert("Tus datos han sido enviados\n¡¡¡Gracias!!!");
+			alert("Tus datos han sido enviados\nï¿½ï¿½ï¿½Gracias!!!");
 			$("form").trigger('reset');
 		}
 	</script>
