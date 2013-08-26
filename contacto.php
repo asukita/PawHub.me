@@ -1,21 +1,24 @@
 <!DOCTYPE HTML>
 <?php
+	session_start();
+	 
 if(array_key_exists("login",$_GET)) {
-$oauth_provider=$_GET['oauth_provider'];
-if($oauth_provider=='twitter') {
-header("Location: login-twitter.php");
+	$oauth_provider=$_GET['oauth_provider'];
+	if($oauth_provider=='twitter') {
+		header("Location: login-twitter.php");
+	}
 }
-}
-$userName=$_GET['userName'];
-$userLastname=$_GET['userLastname'];
-$userCity=$_GET['userCity'];
-$tw= 'false';
-$tw=$_GET['tw'];
+	$userName=$_SESSION['userName'];
+	$userCity=$_SESSION['userCity'];
+	$tw= 'false';
+	$tw=$_SESSION['tw'];
+
+	echo $userName;
 ?>
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-		<meta name="viewport" content="width=device-width, initial-scale = 1.0, user-scalable = no">
+		<meta name="viewport" content="width=device-width, initial-scale = 1.0">
 		<title>Contacto</title>
 		<link rel="stylesheet" href="css/formstyle.css" type="text/css" media="screen"/>
 		<link rel="stylesheet" href="css/grid.css" type="text/css" media="screen">
@@ -164,7 +167,7 @@ $tw=$_GET['tw'];
 
 					$('.btnsredes').remove();
 					$('#mesagges').css('display','block');
-					$('#mesagges p').text('Ya has sido pre-registrado en PawHub. Éstos son tus datos, verifícalos ¡¡¡Muchas gracias!!!');
+					$('#mesagges p').text('¡¡Ya CASI estás pre-registrado!! Verifica tus datos por favor');
 					$('#userName').val(userName);
 					$('#userEmail').val(userEmail);
 					$('#userCity').val(userCity);
@@ -212,8 +215,10 @@ $tw=$_GET['tw'];
 
 			</div>
 		</div>
-
-		<div id="wrapper" align="center">
+		
+		<div id="container">
+			
+			<div id="wrapper" align="center">
 			<div id="navigation">
 				<ul>
 					<li id="li1" class="selected">
@@ -322,6 +327,10 @@ $tw=$_GET['tw'];
 
 			</div>
 		</div>
+			
+		</div>
+
+		
 	</body>
 	<script>
 		//Funcion que verifica campos del formulario vacios para IE y Safari

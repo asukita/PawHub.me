@@ -5,10 +5,8 @@
 body {
 	color: #444444;
 	font-size: 13px;
-	background: url(../images/contact_bg.jpeg) no-repeat;
 	font-family: 'Tahoma', sans-serif;
-	background-position-y: 45px;
-	background-size: 100% 100%;
+	background: #971E49;
 }
 
 a, img {
@@ -27,12 +25,6 @@ a, img {
 	z-index: 9999 !important;
 }
 
-.menu {
-	width: 100%;
-	height: 45px;
-	background: #971E49;
-	z-index: 9999 !important;
-}
 #logo {
 	float: left;
 	margin-bottom: 0;
@@ -132,6 +124,14 @@ ul.navigation {
 	color: #63C3CF;
 }
 
+#container {
+	background: url(../images/contact_bg.jpeg) no-repeat;
+	background-size: 100% 100%;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	margin: 0 auto;
+}
 #wrapper {
 	-moz-box-shadow: 0px 0px 3px #aaa;
 	-webkit-box-shadow: 0px 0px 3px #aaa;
@@ -263,7 +263,7 @@ span.error {
 	float: left;
 }
 
-#steps textarea{
+#steps textarea {
 	height: 30px;
 }
 
@@ -360,21 +360,22 @@ span.error {
 	cursor: pointer;
 }
 
-.mesagges p{
-	background-color: rgba(255, 212, 0, 0.5)!important;
+.mesagges p {
+	background-color: rgba(255, 212, 0, 0.5) !important;
 	color: #971E49;
-    font-weight: bold;
+	font-weight: bold;
 }
 
 p.error {
-	background-color: rgba(255, 0, 0, 0.5)!important;
-    font-weight: bold;
+	background-color: rgba(255, 0, 0, 0.5) !important;
+	font-weight: bold;
 }
 
 /*ESTILOS PARA IE */
 
-.no-js body{
+.no-js #container {
 	background: url(../images/contact_bgIE.jpeg) no-repeat;
+	background-repeat: repeat;
 }
 
 .no-js #steps {
@@ -386,17 +387,27 @@ p.error {
 	margin-left: -8px !important;
 }
 
-.no-js #wrapper{
-	background: #FFF; 
+.no-js #wrapper {
+	background: #FFF;
 	border: 1px solid #000;
 }
-.no-js .messages p{
+.no-js .messages p {
 	background: rgb(255, 0, 0) !important;
 	color: #971E49;
-    font-weight: bold;
+	font-weight: bold;
 }
 
+@media only screen and (max-width: 766px) {
 
+	.menu {
+		position: inherit !important;
+		width: 675px;
+	}
 
+	#container {
+		width: 675px;
+		height: 670px;
+	}
 
+}
 

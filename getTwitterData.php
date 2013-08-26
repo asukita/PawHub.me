@@ -34,19 +34,15 @@ if (!empty($_GET['oauth_verifier']) && !empty($_SESSION['oauth_token']) && !empt
         // Something's wrong, go back to square 1  
         header('Location: login-twitter.php');
 		
-    } else {?>
-	   	
-		<script type="text/javascript">
+    } else {
 				
-				var userName = '<?php echo $userName; ?>';
-				var userCity = '<?php echo $userCity; ?>'; 
-				
-				location.href = "contactoLoginFB.php?userName="+userName+"&userCity="+userCity+"&tw=true";
-				
+		$_SESSION["userName"] = $userName;
+		$_SESSION["userCity"] = $userCity;
+		$_SESSION["tw"] = 'true';
 
-		</script>
-		
-    <?php }
+		header('Location: contacto.php');
+	} 
+	
 } else {
     // Something's missing, go back to square 1
     header('Location: login-twitter.php');
