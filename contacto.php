@@ -242,7 +242,7 @@ $tw=$_GET['tw'];
 							<a href="#" onclick="FB.login();"><img src="images/fbsign.jpg" style="margin-right: 22px; margin-bottom: 7px;" /></a>
 							<a href="?login&oauth_provider=twitter"><img src="images/twsign.jpg" style="margin-bottom: 7px;" /></a>
 						</div>
-						<div class="mesagges" style="display: none;">
+						<div id="mesagges" style="display: none;">
 							<p>This is a test</p>
 						</div>
 
@@ -426,7 +426,7 @@ $tw=$_GET['tw'];
 						withCredentials : false
 					},
 					cache : false,
-					url : "http://wskrs.com/Register/PreUser",
+					url : "http://wskrs.com/Register/PreUser?jsoncallback=?",
 					data : str,
 					dataType : "json",
 					error : callback_error,
