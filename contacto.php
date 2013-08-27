@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
 <?php
+	ini_set("session.gc_maxlifetime","7200");  
 	session_start();
 	 
 if(array_key_exists("login",$_GET)) {
@@ -12,8 +13,8 @@ if(array_key_exists("login",$_GET)) {
 	$userCity=$_SESSION['userCity'];
 	$tw= 'false';
 	$tw=$_SESSION['tw'];
+	$ml = $_GET['ml'];
 
-	echo $userName;
 ?>
 <html>
 	<head>
@@ -89,6 +90,7 @@ if(array_key_exists("login",$_GET)) {
 			var userL = '<?php echo $userLastname; ?>';
 			var userC = '<?php echo $userCity; ?>';
 			var tw = '<?php echo $tw; ?>';
+			var ml = '<?php echo $ml; ?>';
 				
 			if(tw == 'true'){
 				$('.btnsredes').remove();
@@ -103,6 +105,10 @@ if(array_key_exists("login",$_GET)) {
 		
 				if(userC != '')
 					$('#userCity').val(userC);
+			}
+			
+			if(ml == 'true'){
+				alert('¡Muchas gracias por interesarte en PawHub!\nTus datos ya han sido enviados\n¡Pronto recibirás noticias de nosotros!');
 			}
 		
 			});

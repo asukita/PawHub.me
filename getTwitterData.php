@@ -2,7 +2,7 @@
 ob_start();
 require("twitter/twitteroauth.php");
 require 'config/twconfig.php';
-
+ini_set("session.gc_maxlifetime","7200");  
 session_start();
 
 if (!empty($_GET['oauth_verifier']) && !empty($_SESSION['oauth_token']) && !empty($_SESSION['oauth_token_secret'])) {
