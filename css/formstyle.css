@@ -65,6 +65,7 @@ ul.navigation {
 	position: relative;
 	margin: 0;
 	padding: 0;
+	z-index: 99999;
 }
 .navigation li {
 	float: left;
@@ -122,6 +123,10 @@ ul.navigation {
 }
 .btn_dropdown:hover {
 	color: #63C3CF;
+}
+
+.navigation li a:hover{
+	padding: 2px;
 }
 
 #container {
@@ -188,7 +193,7 @@ ul.navigation {
 	font-size: 16px;
 }
 #navigation ul li a:hover {
-	color: #FFD400;
+	color: #63C3CF;
 }
 
 #navigation ul li.selected a {
@@ -406,7 +411,8 @@ p.error {
 
 	#container {
 		width: 675px;
-		height: 670px;
+		min-height: 690px;
+		height: 690px;
 	}
 
 }

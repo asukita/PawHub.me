@@ -264,24 +264,22 @@ if(array_key_exists("login",$_GET)) {
 				<div id="nav">
 					<a class="btn_dropdown" data-toggle="collapse" data-target=".nav-collapse_">MENU</a>
 					<ul class="navigation">
-						<li data-slide="1">
+						<li>
 							<a href="index.html">Home</a>
 						</li>
-						<li data-slide="2">
+						<li>
 							<a href="index.html#slide2">What is</a>
 						</li>
-						<li data-slide="4">
+						<li>
 							<a href="index.html#slide4">Tools</a>
 						</li>
-						<li data-slide="6">
+						<li>
 							<a href="index.html#slide6">Motto</a>
 						</li>
-						<li data-slide="7">
+						<li>
 							<a href="index.html#slide7">Team</a>
 						</li>
-						<li data-slide="8" id="li_contact">
-							<a>Apóyanos</a>
-						</li>
+
 						<div class="clear"></div>
 					</ul>
 				</div>
