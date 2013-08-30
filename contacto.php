@@ -273,16 +273,16 @@ if(array_key_exists("login",$_GET)) {
 							<a href="index.html">Home</a>
 						</li>
 						<li>
-							<a href="index.html#slide2">What is</a>
+							<a href="index.html#slide2">¿Qué es?</a>
 						</li>
 						<li>
-							<a href="index.html#slide4">Tools</a>
+							<a href="index.html#slide4">Herramientas</a>
 						</li>
 						<li>
-							<a href="index.html#slide6">Motto</a>
+							<a href="index.html#slide6">Motivo</a>
 						</li>
 						<li>
-							<a href="index.html#slide7">Team</a>
+							<a href="index.html#slide7">Equipo</a>
 						</li>
 
 						<div class="clear"></div>
