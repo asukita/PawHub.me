@@ -54,21 +54,21 @@ if($name != ''){
 					<b>Éstos son sus datos:</b>
 					</p> <br />
 					<p><b>Nombre:</b> ' . $name . ' ' . $lastname . '.</p>
-					<p><b>Correo: </b>' . $email . '</p>
-					<p><b>Ciudad: </b>' . $city . ' </p>
-					<p><b>Acerca del candidato: </b>' . $about . '</p>
-					<p><b>Se interesa por: </b>' . $interest . '</p>
-					<p style="text-align: right;">Correo Automático, no contestar</p>
+					<p><b>Correo: </b>' . $email . '.</p>
+					<p><b>Ciudad: </b>' . $city . '.</p>
+					<p><b>Acerca del candidato: </b>' . $about . '.</p>
+					<p><b>Se interesa por: </b>' . $interest . '.</p>
+					<p style="text-align: right;">Correo Automático, no contestar.</p>
 					</body> 
 					</html> ';
 	$mail -> AltBody = 'Nuevo candidato desde sitio PawHub.me\n
 						Nuevo candidato desde el sitio de PawHub.me\n 
 						Éstos son sus datos:\n
 						Nombre: ' . $name . ' ' . $lastname . '.\n
-						Correo: ' . $email . '\n
-						Ciudad: ' . $city . ' \n
-						Acerca del candidato: ' . $about . '\n
-						Se interesa por: </b>' . $interest . '\n';
+						Correo: ' . $email . '.\n
+						Ciudad: ' . $city . '. \n
+						Acerca del candidato: ' . $about . '.\n
+						Se interesa por: </b>' . $interest . '.\n';
 	
 	if (!$mail -> Send()) {
 		echo 'Message could not be sent.';

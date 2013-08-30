@@ -1,8 +1,14 @@
 <!DOCTYPE HTML>
 <?php
-	ini_set("session.gc_maxlifetime","7200");  
 	session_start();
-	 
+	
+	if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 30)) {
+	    // last request was more than 1 minutes ago
+	    session_unset();     // unset $_SESSION variable for the run-time 
+	    session_destroy();   // destroy session data in storage
+	}
+	$_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
+	
 if(array_key_exists("login",$_GET)) {
 	$oauth_provider=$_GET['oauth_provider'];
 	if($oauth_provider=='twitter') {
@@ -11,6 +17,13 @@ if(array_key_exists("login",$_GET)) {
 }
 	$userName=$_SESSION['userName'];
 	$userCity=$_SESSION['userCity'];
+	$userCity = str_replace("Ã©", "é", $userCity); 
+	$userCity = str_replace("Ã¡", "á", $userCity); 
+	$userCity = str_replace("Ã", "í", $userCity); 
+	$userCity = str_replace("Ã³", "ó", $userCity);
+	$userCity = str_replace("í³", "ó", $userCity); 
+	$userCity= str_replace("Ãº", "ú", $userCity);  
+	$userCity= str_replace("íº", "ú", $userCity);
 	$tw= 'false';
 	$tw=$_SESSION['tw'];
 	$ml = $_GET['ml'];
@@ -50,6 +63,26 @@ if(array_key_exists("login",$_GET)) {
 			if ($("#userEmail").val() == '') {
 				alert("Ingresa un email");
 			} else if (validar_email($("#userEmail").val())) {
+				var mail = $("#userEmail").val();
+
+				$.ajax({
+					type : "GET",
+					crossDomain : true,
+					xhrFields : {
+						withCredentials : false
+					},
+					cache : false,
+					url : "http://wskrs.com/Register/Exist",
+					data : { email: mail },
+					success : function(respuesta){
+						if(respuesta){
+							$('#mesagges p').text(mail + ' ya ha sido pre-registrado anteriormente, puedes editar tus datos enviando el formulario nuevamente');
+							$('#mesagges').css('display','block');
+							//$("#userEmail").val('');
+					   }	
+					}
+				});
+
 		
 			} else {
 				alert("El email no es valido \nEjemplo: example@example.com");
@@ -58,12 +91,13 @@ if(array_key_exists("login",$_GET)) {
 		
 		});
 		
+		
 		// verificar correo candidato
 		$("#candidateEmail").change(function() {
 			if ($("#candidateEmail").val() == '') {
-				$('#mesagges2').css('display','block');
 				$('#mesagges2 p').addClass('error');
 				$('#mesagges2 p').text("Ingresa un email");
+				$('#mesagges2').css('display','block');
 			} else if (validar_email($("#candidateEmail").val())) {
 		
 			} else {
@@ -94,8 +128,8 @@ if(array_key_exists("login",$_GET)) {
 				
 			if(tw == 'true'){
 				$('.btnsredes').remove();
+				$('#mesagges p').text('¡¡Ya CASI estás pre-registrado!! Verifica tus datos por favor');
 				$('#mesagges').css('display','block');
-				$('#mesagges p').text('¡¡Ya casi estás pre-registrado!! Verifica tus datos por favor');
 				
 				if(userN != '')
 					$('#userName').val(userN);
@@ -127,25 +161,6 @@ if(array_key_exists("login",$_GET)) {
 					xfbml : true // parse XFBML
 				});
 
-				// Here we subscribe to the auth.authResponseChange JavaScript event. This event is fired
-				// for any authentication related change, such as login, logout or session refresh. This means that
-				// whenever someone who was previously logged out tries to log in again, the correct case below
-				// will be handled.
-				FB.Event.subscribe('auth.authResponseChange', function(response) {
-					// Here we specify what we do with the response anytime this event occurs.
-					if (response.status === 'connected') {
-						// The response object is returned with a status field that lets the app know the current
-						// login status of the person. In this case, we're handling the situation where they
-						// have logged in to the app.
-						testAPI();
-
-					} else if (response.status === 'not_authorized') {
-						// In this case, the person is logged into Facebook, but not into the app, so we call
-
-						$('#mesagges').css('display','block');
-						$('#mesagges p').text('No has autorizado a nuestra App tener acceso a tus datos, favor de llenar la forma a mano');
-					}
-				});
 			};
 
 			// Load the SDK asynchronously
@@ -160,27 +175,79 @@ if(array_key_exists("login",$_GET)) {
 					js.src = "//connect.facebook.net/en_US/all.js";
 					ref.parentNode.insertBefore(js, ref);
 				}(document));
-
-			// Here we run a very simple test of the Graph API after login is successful.
-			// This testAPI() function is only called in those cases.
-			function testAPI() {
 				
-				console.log('Welcome!  Fetching your information.... ');
-				FB.api('/me', function(response) {
-					var userName = response.name;
-					var userEmail = response.email;
-					var userCity = response.location.name;
+			function getFBInfo(){
+					FB.login(function(response){
+						
+			            if(response.status == 'connected'){
+			                console.log('Welcome!  Fetching your information.... ');
+							FB.api('/me', function(response) {
+								var userName = response.name;
+								var userEmail = response.email;
+								var userCity = response.location.name;
+								
+								$.ajax({
+									type : "GET",
+									crossDomain : true,
+									xhrFields : {
+										withCredentials : false
+									},
+									cache : false,
+									url : "http://wskrs.com/Register/Exist",
+									data : { email: userEmail },
+									success : function(respuesta){
+										if(respuesta){
+									   		//$("form").trigger('reset');
+											$('#mesagges p').text(userEmail + ' ya ha sido pre-registrado anteriormente, puedes editar tus datos enviando el formulario nuevamente');
+											$('#mesagges').css('display','block');
+											$('#userName').val(userName);
+											$('#userEmail').val(userEmail);
+											$('#userCity').val(userCity);
+												
+								   		}else{
+									   		$('.btnsredes').remove();
+											
+											var data = "userName="+userName+'&userEmail='+userEmail+'&userCity='+userCity;
+											
+											//se guarda usuario
+											try {
+												$.ajax({
+													type : "POST",
+													crossDomain : true,
+													xhrFields : {
+														withCredentials : false
+													},
+													cache : false,
+													url : "http://wskrs.com/Register/PreUser?jsoncallback=?",
+													data : data,
+													dataType : "json",
+													error : callback_error,
+													success : verificaFB
+												});
+											} catch(ex) {
+												$('#mesagges p').text("Ha ocurrido un error\n"+ex.description);
+												$('#mesagges').css('display','block');
+												$('#mesagges p').addClass('error');
+								
+											}
+											
+											function verificaFB(){
+												$('#mesagges p').text('¡¡Ya CASI estás pre-registrado!! Verifica tus datos por favor');
+												$('#mesagges').css('display','block');
+												$('#userName').val(userName);
+												$('#userEmail').val(userEmail);
+												$('#userCity').val(userCity);	
+											}
+											
+								   		}	
+									}
+								});
+							});
+			                
+			            }
+        			},{scope: 'email'});
+				}
 
-					$('.btnsredes').remove();
-					$('#mesagges').css('display','block');
-					$('#mesagges p').text('¡¡Ya CASI estás pre-registrado!! Verifica tus datos por favor');
-					$('#userName').val(userName);
-					$('#userEmail').val(userEmail);
-					$('#userCity').val(userCity);
-					
-				});
-			}
-			
 		</script>
 
 		<!-- TERMINA CODIGO FB -->
@@ -250,7 +317,7 @@ if(array_key_exists("login",$_GET)) {
 						</p>
 						<br />
 						<div class="btnsredes">
-							<a href="#" onclick="FB.login();"><img src="images/fbsign.jpg" style="margin-right: 22px; margin-bottom: 7px;" /></a>
+							<a href="#" onclick="getFBInfo();return false;"><img src="images/fbsign.jpg" style="margin-right: 22px; margin-bottom: 7px;" /></a>
 							<a href="?login&oauth_provider=twitter"><img src="images/twsign.jpg" style="margin-bottom: 7px;" /></a>
 						</div>
 						<div id="mesagges" style="display: none;">
@@ -348,30 +415,30 @@ if(array_key_exists("login",$_GET)) {
 				var f = document.getElementById('formElem1');
 
 				if (f.userName.value == "") {
-					$('#mesagges').css('display','block');
 					$('#mesagges p').addClass('error');
 					$('#mesagges p').text("Por favor escribe tu nombre");
+					$('#mesagges').css('display','block');
 					f.userName.focus();
 					return false;
 				}
 				if (f.userLastname.value == "") {
-					$('#mesagges').css('display','block');
 					$('#mesagges p').addClass('error');
 					$('#mesagges p').text("Por favor escribe tu apellido");
+					$('#mesagges').css('display','block');
 					f.userLastname.focus();
 					return false;
 				}
 				if (f.userEmail.value == "") {
-					$('#mesagges').css('display','block');
 					$('#mesagges p').addClass('error');
 					$('#mesagges p').text("Por favor escribe tu email");
+					$('#mesagges').css('display','block');
 					f.userEmail.focus();
 					return false;
 				}
 				if (f.userCity.value == "") {
-					$('#mesagges').css('display','block');
 					$('#mesagges p').addClass('error');
 					$('#mesagges p').text("Ingresa tu Ciudad");
+					$('#mesagges').css('display','block');
 					f.userCity.focus();
 					return false;
 				}
@@ -382,45 +449,45 @@ if(array_key_exists("login",$_GET)) {
 
 			if (inp == 2) {
 				//verificar datos candidato
-				if (f.candidateName.value == "") {
-					$('#mesagges2').css('display','block');
+				if (f.candidateName.value == "") {					
 					$('#mesagges2 p').addClass('error');
 					$('#mesagges2 p').text("Por favor escribe tu nombre");
+					$('#mesagges2').css('display','block');
 					f.candidateName.focus();
 					return false;
 				}
 				if (f.candidateLastname.value == "") {
-					$('#mesagges2').css('display','block');
 					$('#mesagges2 p').addClass('error');
 					$('#mesagges2 p').text("Por favor escribe tu apellido");
+					$('#mesagges2').css('display','block');
 					f.candidateLastname.focus();
 					return false;
 				}
 				if (f.candidateEmail.value == "") {
-					$('#mesagges2').css('display','block');
 					$('#mesagges2 p').addClass('error');
 					$('#mesagges2 p').text("Por favor escribe tu email");
+					$('#mesagges2').css('display','block');
 					f.candidateEmail.focus();
 					return false;
 				}
 				if (f.candidateCity.value == "") {
-					$('#mesagges2').css('display','block');
 					$('#mesagges2 p').addClass('error');
 					$('#mesagges2 p').text("Ingresa tu Ciudad");
+					$('#mesagges2').css('display','block');
 					f.candidateCity.focus();
 					return false;
 				}
 				if ((f.candidateMsg.value == "") || (f.candidateMsg.value == "...") || (f.candidateMsg.value.length == 0)) {//revisar espacios
-					$('#mesagges2').css('display','block');
 					$('#mesagges2 p').addClass('error');
 					$('#mesagges2 p').text("¡¡¡Queremos saber más de ti!!!");
+					$('#mesagges2').css('display','block');
 					f.candidateMsg.focus();
 					return false;
 				}
 				if ((f.candidateInterest.value == "") || (f.candidateInterest.value == "...") || (f.candidateInterest.value.length == 0)) {//revisar espacios
-					$('#mesagges2').css('display','block');
 					$('#mesagges2 p').addClass('error');
 					$('#mesagges2 p').text("¡¡¡Queremos saber tus intereses!!!");
+					$('#mesagges2').css('display','block');
 					f.candidateInterest.focus();
 					return false;
 				}
@@ -432,7 +499,7 @@ if(array_key_exists("login",$_GET)) {
 		function sendValues() {
 			var str;
 			str = $("#formElem1").serialize();
-
+			
 			try {
 				$.ajax({
 					type : "POST",
@@ -447,13 +514,11 @@ if(array_key_exists("login",$_GET)) {
 					error : callback_error,
 					success : recuperarInfo
 				});
-			} catch(ex) {
-				$('#mesagges').css('display','block');
+			} catch(ex) {				
 				$('#mesagges p').addClass('error');
 				$('#mesagges p').text("Ha ocurrido un error\n"+ex.description);
-				$('#mesagges2').css('display','block');
-				$('#mesagges2 p').addClass('error');
-				$('#mesagges2 p').text("Ha ocurrido un error\n"+ex.description);
+				$('#mesagges').css('display','block');
+
 			}
 
 
@@ -461,22 +526,18 @@ if(array_key_exists("login",$_GET)) {
 
 		// mostramos un mensaje con la causa del problema
 		function callback_error(XMLHttpRequest, textStatus, errorThrown) {
-			$('#mesagges').css('display','block');
 			$('#mesagges p').addClass('error');
 			$('#mesagges p').text("Ha ocurrido un error al registrarte, por favor intenta nuevamente");
-			$('#mesagges2').css('display','block');
-			$('#mesagges2 p').addClass('error');
-			$('#mesagges2 p').text('Tus datos han sido enviados.¡¡¡Gracias!!!');
+			$('#mesagges').css('display','block');
+
 			alert(XMLHttpRequest + textStatus + errorThrown);
 		}
 
 		//si tiene exito recuperamos la info
 		function recuperarInfo(ajaxResponse, textStatus) {
-			$('#mesagges').css('display','block');
 			$('#mesagges p').text('Tus datos han sido enviados.¡¡¡Gracias!!!');
-			$('#mesagges2').css('display','block');
-			$('#mesagges2 p').text('Tus datos han sido enviados.¡¡¡Gracias!!!');
 			$("form").trigger('reset');
+			$('#mesagges').css('display','block');
 		}
 	</script>
 

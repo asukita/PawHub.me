@@ -1,20 +1,5 @@
 <!DOCTYPE HTML>
-<?php
-	session_start();
-	 
-if(array_key_exists("login",$_GET)) {
-	$oauth_provider=$_GET['oauth_provider'];
-	if($oauth_provider=='twitter') {
-		header("Location: login-twitter.php");
-	}
-}
-	$userName=$_SESSION['userName'];
-	$userCity=$_SESSION['userCity'];
-	$tw= 'false';
-	$tw=$_SESSION['tw'];
 
-	echo $userName;
-?>
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />

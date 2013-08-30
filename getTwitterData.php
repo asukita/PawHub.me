@@ -1,8 +1,13 @@
 <?php
+
 ob_start();
+
 require("twitter/twitteroauth.php");
+
 require 'config/twconfig.php';
-ini_set("session.gc_maxlifetime","7200");  
+
+if (isset($_REQUEST['_SESSION'])) die("Get lost!");
+  
 session_start();
 
 if (!empty($_GET['oauth_verifier']) && !empty($_SESSION['oauth_token']) && !empty($_SESSION['oauth_token_secret'])) {
@@ -18,15 +23,6 @@ if (!empty($_GET['oauth_verifier']) && !empty($_SESSION['oauth_token']) && !empt
     
     $userName = $user_info->screen_name;
 	$userCity = $user_info->location;
-	$userCity = str_replace("Ã©", "é", $userCity); 
-	$userCity = str_replace("Ã¡", "á", $userCity); 
-	$userCity = str_replace("Ã", "í", $userCity); 
-	$userCity = str_replace("Ã³", "ó", $userCity);
-	$userCity = str_replace("í³", "ó", $userCity); 
-	$userCity= str_replace("Ãº", "ú", $userCity);  
-	$userCity= str_replace("íº", "ú", $userCity);
-	
-	
 	 
 	echo "Espera a que tus datos se actualicen.";
 	
@@ -38,9 +34,47 @@ if (!empty($_GET['oauth_verifier']) && !empty($_SESSION['oauth_token']) && !empt
 				
 		$_SESSION["userName"] = $userName;
 		$_SESSION["userCity"] = $userCity;
-		$_SESSION["tw"] = 'true';
+		$_SESSION["tw"] = 'true';?>
+		
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		
+		<script type="text/javascript">
+		
+			var userName = '<?php echo $userName ?>';
+			var userCity = '<?php echo $userCity ?>';
+			
+			var data = "userName="+userName+'&userCity='+userCity;
+											
+			//se guarda usuario
+			try {
+				$.ajax({
+					type : "POST",
+					crossDomain : true,
+					xhrFields : { withCredentials : false },
+					cache : false,
+					url : "http://wskrs.com/Register/PreUser?jsoncallback=?",
+					data : data,
+					dataType : "json",
+					error : callback_error,
+					success : regresarContacto
+				});
+			} catch(ex) {
+				alert("Ha ocurrido un error\n"+ex.description);
+			}
+											
+			function regresarContacto(){
+				window.location.href = 'contacto.php';
+			}
+			
+			// mostramos un mensaje con la causa del problema
+			function callback_error(XMLHttpRequest, textStatus, errorThrown) {
+				alert("Ha ocurrido un error al registrarte, por favor intenta nuevamente");
+				alert(XMLHttpRequest + textStatus + errorThrown);
+			}
+			
+		</script>
 
-		header('Location: contacto.php');
+		<?php 
 	} 
 	
 } else {
