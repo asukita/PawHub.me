@@ -731,3 +731,11 @@
 	}
 }
 
+@media only screen and (max-height: 470px) {
+
+	#slide4 {
+		min-height: 480px;
+	}
+
+}
+

@@ -37,6 +37,8 @@ if(array_key_exists("login",$_GET)) {
 		<link rel="stylesheet" href="css/formstyle.css" type="text/css" media="screen"/>
 		<link rel="stylesheet" href="css/grid.css" type="text/css" media="screen">
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,800,700,300' rel='stylesheet' type='text/css'>
+		<link rel="shortcut icon" href="images/favicon.ico">
+
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 		<script type="text/javascript" src="js/sliding.form.js"></script>
 
@@ -79,6 +81,8 @@ if(array_key_exists("login",$_GET)) {
 							$('#mesagges p').text(mail + ' ya ha sido pre-registrado anteriormente, puedes editar tus datos enviando el formulario nuevamente');
 							$('#mesagges').css('display','block');
 							//$("#userEmail").val('');
+					   }else{
+					   		$('#mesagges').css('display','none');
 					   }	
 					}
 				});
@@ -87,6 +91,7 @@ if(array_key_exists("login",$_GET)) {
 			} else {
 				alert("El email no es valido \nEjemplo: example@example.com");
 				$("#userEmail").val("");
+				$('#mesagges').css('display','none');
 			}
 		
 		});
@@ -128,7 +133,7 @@ if(array_key_exists("login",$_GET)) {
 				
 			if(tw == 'true'){
 				$('.btnsredes').remove();
-				$('#mesagges p').text('¡¡Ya CASI estás pre-registrado!! Verifica tus datos por favor');
+				$('#mesagges p').text('¡¡Ya estás pre-registrado!! Ahora sólo falta verificar tus datos y envíarlos');
 				$('#mesagges').css('display','block');
 				
 				if(userN != '')
@@ -232,7 +237,7 @@ if(array_key_exists("login",$_GET)) {
 											}
 											
 											function verificaFB(){
-												$('#mesagges p').text('¡¡Ya CASI estás pre-registrado!! Verifica tus datos por favor');
+												$('#mesagges p').text('¡¡Ya estás pre-registrado!! Ahora sólo falta verificar tus datos y envíarlos');
 												$('#mesagges').css('display','block');
 												$('#userName').val(userName);
 												$('#userEmail').val(userEmail);
@@ -385,7 +390,7 @@ if(array_key_exists("login",$_GET)) {
 							¡Contáctanos!
 						</legend>
 						<p>
-							<a href="mailto:info@pawhub.me"><img src="images/mailico.png" alt="contacto" title="info@pawhub.me" /></a>
+							<a href="mailto:info@pawhub.me"><img src="images/mail_blue.png" alt="contacto" title="info@pawhub.me" /></a>
 						</p>
 						<p>
 							<a href="https://www.facebook.com/PawHub" target="_blank"><img src="images/icnfb.png" alt="contacto" title="fb.com/PawHub" /></a>

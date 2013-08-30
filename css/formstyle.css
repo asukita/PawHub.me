@@ -125,10 +125,6 @@ ul.navigation {
 	color: #63C3CF;
 }
 
-.navigation li a:hover{
-	padding: 2px;
-}
-
 #container {
 	background: url(../images/contact_bg.jpeg) no-repeat;
 	background-size: 100% 100%;
@@ -413,6 +409,20 @@ p.error {
 		width: 675px;
 		min-height: 690px;
 		height: 690px;
+		border-bottom: 3px solid #FFFFFF;
+	}
+
+	.navigation li a:hover {
+		padding: 2px;
+	}
+
+}
+
+@media only screen and (max-height: 470px) {
+
+	#container {
+		height: 690px;
+		border-bottom: 3px solid #FFFFFF;
 	}
 
 }
