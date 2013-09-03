@@ -729,6 +729,10 @@
 	#slide6 #content {
 		margin-top: 65px
 	}
+	
+	#aviso #content {
+		max-width: 620px;
+	}
 }
 
 @media only screen and (max-height: 470px) {
@@ -737,5 +741,8 @@
 		min-height: 480px;
 	}
 
+	#aviso #content {
+		max-width: 620px;
+	}
 }
 

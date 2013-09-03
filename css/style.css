@@ -395,7 +395,7 @@ img.icon_img {
 }
 #slide4 h3 {
 	color: #fff;
-	font-size: 42px;
+	font-size: 53px;
 	font-weight: 500;
 	text-transform: uppercase;
 	text-align: left
@@ -416,7 +416,9 @@ img.icon_img {
 .tool img {
 	display: inline-block;
 	width: 28%;
-	margin-right: 40px
+	margin-right: 40px; 
+	position : relative;
+	left: 25px;
 }
 .tool .info {
 	display: inline-block !important;
@@ -563,7 +565,7 @@ a.servc_block:hover {
 	position: absolute;
 	left: 0px;
 	color: #fff;
-	background: url(../images/icono75x75.png) no-repeat left center;
+	background: url(../images/logoMin.png) no-repeat left center;
 	padding-left: 70px;
 	line-height: normal;
 	margin-top: 20px;
@@ -1110,6 +1112,41 @@ a.team_soc2 {
 }
 .at-vertical-menu {
 	top: 30% !important
+}
+
+/* ____________ //AVISO_PRIVACIDAD __________ */
+
+#aviso .menu {
+	top: 0;
+	left: 0;
+}
+
+#aviso .menu a {
+	color: #FFFFFF;
+}
+
+#aviso	.menu a:hover {
+	color: #FFD400;
+}
+
+#aviso #li_contact a:hover{
+	color: #63C2D0;
+}
+
+#aviso #content {
+	background-color: rgba(255, 255, 255, 0.7);
+	border-radius: 10px 10px 10px 10px;
+	box-shadow: 0 0 7px #000000;
+	margin: 60px auto;
+	overflow: hidden;
+	width: 1100px;
+	padding: 15px;
+}
+
+#aviso #content h1 {
+	font-size: 40px;
+	margin: 15px 0 10px;
+	line-height: 39px;
 }
 
 /* ____________ //BACK_TOP __________ */

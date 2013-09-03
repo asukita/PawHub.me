@@ -1,0 +1,132 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<meta name="viewport" content="width=device-width, initial-scale = 1.0">
+		<title>Aviso de Privacidad</title>
+		<link rel="stylesheet" href="css/style.css" type="text/css" media="screen"/>
+		<link rel="stylesheet" href="css/grid.css" type="text/css" media="screen">
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,800,700,300' rel='stylesheet' type='text/css'>
+		<link rel="shortcut icon" href="images/favicon.ico">
+		
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+
+		<script type="text/javascript">
+			$(document).ready(function() {
+
+				//DROP menu
+				if ($(window).width() < 750) {
+					$(".btn_dropdown").click(function() {
+						$(".navigation").slideToggle("slow");
+					});
+
+					$(".navigation li").click(function() {
+						$(".navigation").hide("fast");
+					});
+				}
+
+			});
+		</script>
+
+	</head>
+
+	<body style="background: url(images/slide_bg.jpg) repeat;">
+		<div id="aviso">
+			<div class="menu">
+				<div class="container clearfix">
+
+					<div id="logo">
+						<a href="index.html"><img src="images/logo.png" /></a>
+					</div>
+
+					<div id="nav">
+						<a class="btn_dropdown" data-toggle="collapse" data-target=".nav-collapse_">MENU</a>
+						<ul class="navigation">
+							<li>
+								<a href="index.html">Home</a>
+							</li>
+							<li>
+								<a href="index.html#slide2">¿Qué es?</a>
+							</li>
+							<li>
+								<a href="index.html#slide4">Herramientas</a>
+							</li>
+							<li>
+								<a href="index.html#slide6">Motivo</a>
+							</li>
+							<li>
+								<a href="index.html#slide7">Equipo</a>
+							</li>
+							<li data-slide="8" id="li_contact">
+								<a href="contacto.php">Únete</a>
+							</li>
+
+							<div class="clear"></div>
+						</ul>
+					</div>
+
+				</div>
+
+			</div>
+
+			<div id="content">
+				<strong id="docs-internal-guid-20879761-e285-8d66-2626-cd77b2f03477"> <h1>AVISO DE PRIVACIDAD</h1>
+				<p>
+					Con fundamento en los artículos 15 y 16 de la Ley Federal de Protección de Datos Personales en Posesión de Particulares
+					hacemos de su conocimiento que PawHub, es responsable de recabar sus datos personales, del uso que se le dé a los mismos
+					y de su protección.
+				</p>
+				<p>
+					Su información personal será utilizada para las siguientes finalidades: proveer los servicios y productos que ha solicitad,
+					notificarle sobre nuevos servicios o productos que tengan relación con los ya adquiridos; comunicarle sobre cambios en los
+					mismos; elaborar estudios y programas que son necesarios para determinar hábitos de consumo; realizar evaluaciones periódicas
+					de nuestros productos y servicios a efecto de mejorar la calidad de los mismos; evaluar la calidad del servicio que brindamos,
+					y en general, para dar cumplimiento a las obligaciones que hemos contraído con usted.
+				</p>
+				<p>
+					Para las finalidades antes mencionadas, podríamos obtener algunos los siguientes datos personales:
+				</p>
+				<ul>
+					<li>
+						Nombre completo
+					</li>
+					<li>
+						Ciudad y País
+					</li>
+					<li>
+						Correo electrónico
+					</li>
+					<li>
+						ID de Facebook y Twitter
+					</li>
+				</ul>
+				<p>
+					Es importante informarle que usted tiene derecho al Acceso, Rectificación y Cancelación de sus datos personales, a
+					Oponerse al tratamiento de los mismos o a revocar el consentimiento que para dicho fin nos haya otorgado.
+				</p>
+				<p>
+					Para ello, es necesario que envíe la solicitud en los términos que marca la Ley en su Art. 29 al Departamento de Protección de Datos
+					Personales, vía correo electrónico a info@pawhub.me.
+				</p> Importante: Cualquier modificación a este Aviso de Privacidad podrá consultarlo en <strong><a href="http://www.pawhub.me/aviso-privacidad.html">http://www.pawhub.me/aviso-privacidad.html</a></strong>
+			</div>
+		</div>
+
+		<script type="text/javascript">
+			(function(i, s, o, g, r, a, m) {
+				i['GoogleAnalyticsObject'] = r;
+				i[r] = i[r] ||
+				function() {
+					(i[r].q = i[r].q || []).push(arguments)
+				}, i[r].l = 1 * new Date();
+				a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+				a.async = 1;
+				a.src = g;
+				m.parentNode.insertBefore(a, m)
+			})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+			ga('create', 'UA-10483060-4', 'pawhub.me');
+			ga('send', 'pageview');
+
+		</script>
+	</body>
+</html>

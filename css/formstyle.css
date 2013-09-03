@@ -342,6 +342,19 @@ p.error {
 	font-weight: bold;
 }
 
+.aviso {
+	position: relative;
+	top: -70px;
+	margin: auto;
+	width: 216px;
+	height: 20px;
+}
+
+.aviso a {
+	color: #B71C4E;
+	font-weight: bolder;
+}
+
 /*ESTILOS PARA IE */
 
 .no-js #container {
