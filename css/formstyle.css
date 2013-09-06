@@ -343,11 +343,14 @@ p.error {
 }
 
 .aviso {
-	position: relative;
-	top: -70px;
-	margin: auto;
-	width: 216px;
-	height: 20px;
+	background: none repeat scroll 0 0 transparent !important;
+    border: medium none !important;
+    height: 20px;
+    margin: 0 152px !important;
+    padding: 0 !important;
+    position: relative;
+    top: 31px;
+    width: 220px !important;
 }
 
 .aviso a {
@@ -379,6 +382,10 @@ p.error {
 	background: rgb(255, 0, 0) !important;
 	color: #B71C4E;
 	font-weight: bold;
+}
+
+.no-js .aviso{
+	position: static!important;
 }
 
 @media only screen and (max-width: 766px) {

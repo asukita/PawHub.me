@@ -345,7 +345,10 @@ if(array_key_exists("login",$_GET)) {
 						</p>
 
 						<input class="submit" type="button" onclick="return Validar(this,1)" value="Avísenme cuando PawHub esté listo" />
-					</fieldset>
+						<p class="aviso">
+							Revisa nuestro <a href="aviso-privacidad.html">Aviso de Privacidad</a>
+						</p>
+						</fieldset>
 				</form>
 
 				<form id="formElem2" name="formElem2" action="mail.php" method="post" onsubmit="return Validar(this,2)">
@@ -381,6 +384,9 @@ if(array_key_exists("login",$_GET)) {
 							<textarea id="candidateInterest" rows="2" cols="50" name="candidateInterest" required>...</textarea>
 						</p>
 						<input class="submit" type="submit" value="Quiero ayudar" style="width: 160px!important; margin: 23px 180px;" />
+						<p class="aviso" style="top: -20px;">
+							Revisa nuestro <a href="aviso-privacidad.html">Aviso de Privacidad</a>
+						</p>
 					</fieldset>
 				</form>
 				<form id="formElem3" name="formElem3" action="" method="post">
@@ -402,10 +408,6 @@ if(array_key_exists("login",$_GET)) {
 
 			</div>
 		</div>
-		
-		<p class="aviso">
-			Revisa nuestro <a href="aviso-privacidad.html">Aviso de Privacidad</a>
-		</p>
 			
 		<script type="text/javascript">
 			(function(i, s, o, g, r, a, m) {

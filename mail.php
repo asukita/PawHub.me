@@ -33,6 +33,7 @@ if($name != ''){
 	$mail -> AddAddress('pamela.vargas@pawhub.me', 'Pamela Vargas');
 	$mail -> AddAddress('julio.avila@pawhub.me', 'Julio Ávila');
 	$mail -> AddAddress('israel.marban@pawhub.me', 'Israel Marbán');
+	$mail -> AddAddress('info@pawhub.me', 'Info PawHub');
 	
 	$mail -> AddReplyTo('info@pawhub.me', 'PawHub Info');
 	//$mail->AddCC('cc@example.com');
